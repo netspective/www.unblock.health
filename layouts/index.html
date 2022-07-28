@@ -1,22 +1,287 @@
-
-{{ partial "header.html" . }}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unblock Health</title>
+    <link rel="stylesheet preload" as="style"  href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.14.2/styles/salesforce-lightning-design-system.min.css" integrity="sha512-v9eTZELqSZcRlIRltjIbpM55zkTQ9azkDAjI0IByyjHLWty1U2+CSPtnNxGpC3FFkpsKwAOfciCv4PWhW/pQGw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
+</head>
+<body>
+<section>  
+  <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
+  <!-- top > starts > -->        
+    <article class="slds-clearfix slds-m-top_medium slds-m-bottom_x-large">
+      <div class="slds-float_left">
+        <div class="slds-context-bar__primary">
+          <div class="slds-context-bar__icon-action" style="flex-shrink: initial;">
+            <a href="#." title="Medigy"><img src="/images/logo-unblock-health.png" alt="Medigy Logo" width="170" height="41" class="slds-m-top_xx-small" style="width: 140px;max-width: 140px;height: 35px;"></a>
+          </div>
+        </div>
+      </div>
+      <div class="slds-float_right">
+        <button class="slds-button slds-p-vertical_x-small slds-p-horizontal_medium slds-color__text_gray-9 slds-m-right_small">
+        <span class="slds-text-body_small"><b>Login</b></span></button>
+        <button class="slds-button slds-button_brand slds-p-vertical_x-small slds-p-horizontal_medium slds-color__text_gray-1">
+          <span class="slds-text-body_small"><b>Register</b></span></button>
+      </div>
+    </article>
+  <!-- top < ends < -->  
  
-<!--{{ partial "preloader.html" . }}-->
-        
-{{ partial "navigation.html" . }}
+ <!-- hero > starts > --> 
+ <article class="slds-grid slds-wrap slds-gutters slds-m-bottom_xx-large slds-p-bottom_large">
+    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12">
+    <aside>
+      <h1 style="font-size: 48px; line-height:55px;">Unblock Health is the EASY button every patient needs</h1>
+      <p style="font-size: 23px; line-height:34px;">Unblock Health provides a suite of digital tools that transform traditionally time-consuming tasks that patients and their families routinely perform into streamlined actions.</p>
+      <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_medium">
+        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12"><button class="slds-button slds-button_stretch slds-button_brand slds-p-around_medium slds-color__text_gray-1 slds-m-bottom_small">
+          <span class="slds-text-heading_medium"><b>Register for an Invitation as a Patient Advocate</b></span></button></div>
+        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12"><button class="slds-button slds-button_stretch slds-button_neutral slds-p-around_medium slds-color__text_gray-9 slds-m-bottom_small">
+          <span class="slds-text-heading_medium" style="color:#1292EE;"><b>Register for an Invitation as a Hospital HIM</b></span></button></div>
+      </div>
+      <p style="font-size: 22px; line-height:34px;">Unblock Health addresses the most common HDO customer service issues:  frustrating, outdated patient request workflows, long request turnaround wait times, inability to connect with a human.</p>
+    </aside>
+    </div>
+    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12">
+      <aside class="slds-box slds-text-align_right slds-m-bottom_large" style="font-size: 23px; line-height:28px; border-color: #C5CED6;">
+        <b>Unblock Health leverages the power of bi-directional, asynchronous messaging to directly connect patients with health information management (HIM) professionals, privacy officers, providers, billing, and finance departments.</b>
+      </aside>
+      <aside class="slds-text-align_center"><img src="/images/hero-diagram.svg" alt="" width="500"></aside>
+    </div>
+  </article>
+ <!-- hero < ends < -->  
+  </header>
+    <!-- main starts > -->
+    <main>
 
-{{ partial "hero-area.html" . }}
+      <!-- Patient Impact Stories -->    
+       <article class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small slds-m-bottom_large">
+         <p style="font-size: 23px; line-height:28px;" class="slds-text-align_center slds-p-bottom_small">Patients and their families need easy access to their health information. Check out the Patient Impact Stories library for real stories of harm that happens when patients DON'T have access to their records and good that happens when they DO.</p>
+         <aside class="slds-grid slds-wrap slds-gutters slds-text-align_center">
+           <div class="slds-col slds-size_12-of-12 slds-small-size_2-of-12">
+           <a href="#."><div class="slds-m-bottom_small"><img src="/images/patient-thumb-1.jpg" alt="" style="width:100%; height:100px; object-fit:cover; border-radius: 5px;"></div>
+           <p class="slds-text-body_small slds-m-bottom_none" style=" min-height: 50px;line-height: 18px;">Stress & Labor</p></a>
+           </div>
+           <div class="slds-col slds-size_12-of-12 slds-small-size_2-of-12">
+           <a href="#."><div class="slds-m-bottom_small"><img src="/images/patient-thumb-2.jpg" alt="" style="width:100%; height:100px; object-fit:cover; border-radius: 5px;"></div>
+           <p class="slds-text-body_small slds-m-bottom_none" style=" min-height: 50px;line-height: 18px;">Suffering</p></a>
+           </div>
+           <div class="slds-col slds-size_12-of-12 slds-small-size_2-of-12">
+           <a href="#."><div class="slds-m-bottom_small"><img src="/images/patient-thumb-3.jpg" alt="" style="width:100%; height:100px; object-fit:cover; border-radius: 5px;"></div>
+           <p class="slds-text-body_small slds-m-bottom_none" style=" min-height: 50px;line-height: 18px;">Harm & Benefit</p></a>
+           </div>
+           <div class="slds-col slds-size_12-of-12 slds-small-size_2-of-12">
+           <a href="#."><div class="slds-m-bottom_small"><img src="/images/patient-thumb-4.jpg" alt="" style="width:100%; height:100px; object-fit:cover; border-radius: 5px;"></div>
+           <p class="slds-text-body_small slds-m-bottom_none" style=" min-height: 50px;line-height: 18px;">Stress and Labor</p></a>
+           </div>
+           <div class="slds-col slds-size_12-of-12 slds-small-size_2-of-12">
+           <a href="#."><div class="slds-m-bottom_small"><img src="/images/patient-thumb-5.jpg" alt="" style="width:100%; height:100px; object-fit:cover; border-radius: 5px;"></div>
+           <p class="slds-text-body_small slds-m-bottom_none" style=" min-height: 50px;line-height: 18px;">Delay and Suffering</p></a>
+           </div>
+           <div class="slds-col slds-size_12-of-12 slds-small-size_2-of-12">
+           <a href="#."><div class="slds-m-bottom_small"><img src="/images/patient-thumb-6.jpg" alt="" style="width:100%; height:100px; object-fit:cover; border-radius: 5px;"></div>
+           <p class="slds-text-body_small slds-m-bottom_none" style=" min-height: 50px;line-height: 18px;">Prevents Complications</p></a>
+           </div>
+         </aside>  
+       </article>
+   
+       <!-- why unblock -->   
+       <article class="slds-p-vertical_x-large" style="background:#F8FAFF;">
+       <div class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small slds-p-bottom_x-large">
+   
+         <aside class="slds-text-align_center slds-m-bottom_xx-large" style="position:relative;">
+         <h2 class="slds-text-heading_large">
+           <a href="#.">Why Unblock Health?</a>
+         </h2>
+         <div style="border-bottom: 3px solid #1292EE;position: absolute;bottom: 0px;left: 35.1%;width: 30%;"></div>
+         <hr class="slds-m-top_medium">
+       </aside>
+   
+       <aside class="slds-container_large slds-container_center slds-text-align_center slds-p-horizontal_xx-large slds-m-bottom_xx-large">
+       <h3 style="font-size:35px; line-height:45px;">Unblock Health will reduce & eliminate unnecessary Patient Administrative Burden.</h3>  
+       <p style="font-size: 23px; line-height:34px;">Unblock Health is SaaS first-in-class suite of patient-focused solutions designed to reduce Patient Administrative Burden (PAB), or the work that patients and their families need to do to get the care they need. Unblock Health is FHIR-enabled, ready to integrate, and customizable.</p>
+       </aside>
+   
+       <aside class="slds-grid slds-wrap slds-gutters slds-p-bottom_large" style="align-items: stretch;">
+         <div class="slds-col slds-size_12-of-12 slds-medium-size_4-of-12">
+           <div class="slds-p-around_medium">
+           <div class="slds-text-align_center slds-m-bottom_large"><img src="/images/health-information-management-diagram.svg" alt="" width="125" height="125"></div>
+           <h4 class="slds-text-align_center slds-m-bottom_large" style="font-size:24px; line-height:30px;">Health Information Management</h4>
+           <p>UH is ready to help healthcare delivery organizations (HDOs) eliminate or reduce the potential for millions of dollars in fines that will start on October 6, 2022. Healthcare delivery organizations (HDOs), providers, and 
+             physicians can trust UH to</p>
+             
+           <ul class="slds-list_dotted">
+             <li>modernize and streamline their patient  access workflows</li>
+             <li>support health information management (HIM) professionals and staff to work more efficiently, with greater accuracy, while reducing costs</li>
+             <li>satisfy HIPAA requirements, the regulations in the Information Blocking Rules, and 21st Century Cures Act.</li> 
+             </ul>
+             </div>
+         </div>
+         
+         <div class="slds-col slds-size_12-of-12 slds-medium-size_4-of-12 slds-border_left slds-border_right">
+           <div class="slds-p-around_medium">
+           <div class="slds-text-align_center slds-m-bottom_large"><img src="/images/office-of-patient-experience-diagram.svg" alt="" width="125" height="125"></div>
+           <h4 class="slds-text-align_center slds-m-bottom_large" style="font-size:24px; line-height:30px;">Office of Patient Experience</h4>
+           <p>Unblock Health provides a fresh approach in improving customer satisfaction and brand reputation by addressing Patient Administrative Burden, as well as providing direct value in:</p>
+             
+           <ul class="slds-list_dotted">
+             <li>improving patient on-boarding</li>
+             <li>increasing patient trust and satisfaction</li>
+             <li>improving patient care coordination</li>
+             <li>reducing risk of Information Blocking complaints, corresponding fines, and corrective action plans</li> 
+             </ul>
+             </div>
+         </div>
+         
+         <div class="slds-col slds-size_12-of-12 slds-medium-size_4-of-12">
+           <div class="slds-p-around_medium">
+           <div class="slds-text-align_center slds-m-bottom_large"><img src="/images/onc-diagram.svg" alt="" width="125" height="125"></div>
+           <h4 class="slds-text-align_center slds-m-bottom_large" style="font-size:24px; line-height:30px;">Regulatory: HHS, ONC, CMS</h4>
+           <p>While the public awaits HHS Secretary Xavier Becerra's office to define civil monetary penalties for providers, Secretary Xavier Becerra did comment that defining this enforcement was a top HHS priority during the annual ONC meeting, emphasizing the high number of complaints being filed against providers.</p>
+           <p><b>There are strong sentiments that providers should be held accountable to the same disincentives and penalties as health IT vendors and health information exchange (HIEs).</b></p>
+             </div>
+         </div>
+       </aside>  
+   
+       </div> 
+       </article>  
+   
+       <!-- partners -->   
+       <article class="slds-container_large slds-container_center slds-p-left_small slds-p-right_small slds-m-top_xx-large slds-m-bottom_xx-large slds-text-align_center">
+         <h3 class="slds-m-bottom_xx-large" style="font-size:35px; line-height:45px;">Partners & Supporters of Unblock Health</h3>  
+         <aside class="slds-grid slds-wrap slds-gutters">
+           <div class="slds-col slds-size_12-of-12 slds-small-size_4-of-12 slds-m-bottom_small">
+           <a href="#."><img src="/images/partners-logo-1.png" alt="" height="95"></a>
+           </div>
+           <div class="slds-col slds-size_12-of-12 slds-small-size_4-of-12 slds-m-bottom_small">
+             <a href="#."><img src="/images/partners-logo-2.png" alt="" height="95"></a>
+             </div>
+             <div class="slds-col slds-size_12-of-12 slds-small-size_4-of-12 slds-m-bottom_small">
+               <a href="#."><img src="/images/partners-logo-3.png" alt="" height="95"></a>
+               </div>
+           </aside>  
+       </article>
+   
+       <!-- testimonials -->   
+       <article class="slds-container_large slds-container_center slds-p-left_small slds-p-right_small slds-p-top_small slds-m-top_xx-large slds-m-bottom_xx-large slds-p-bottom_large">
+         <aside class="slds-grid slds-wrap slds-gutters">
+           <div class="slds-col slds-size_12-of-12 slds-small-size_6-of-12 slds-m-bottom_small">
+             <div class="slds-box" style="padding:30px; background: #F9F9FF;border-radius: 0px;box-shadow: 3px 3px 12px #ddd;">
+               <p class="slds-m-bottom_large" style="font-size:23px; line-height:35px;">"Unblock Health is a first-in-class, comprehensive suite of patient advocacy services designed for patients and consumers."</p>
+               <div class="slds-grid slds-wrap slds-gutters">
+                 <div class="slds-col slds-size_12-of-12 slds-small-size_8-of-12 slds-m-bottom_xx-small">
+                   <div class="slds-clearfix slds-m-bottom_xx-small">
+                     <div class="slds-float_left">
+                       <span class="slds-avatar slds-avatar_circle slds-avatar_large">
+                         <img alt="Person name" src="/images/avatar.jpg" title="">
+                         </span>
+                     </div>
+                     <div class="slds-float_left slds-text-body_small slds-m-left_small slds-m-top_xx-small" style="line-height: 18px;">
+                       <b class="slds-text-heading_small">Alex John</b><br> <span style="font-size:13px;">Founder & Head of Product</span>
+                     </div>
+                     </div>
+                 </div>
+                 <div class="slds-col slds-size_12-of-12 slds-small-size_4-of-12 slds-m-bottom_xx-small slds-text-align_right">
+                   <a href="#."><img src="/images/testim-logo-1.jpg" alt="" height="50"></a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           
+           <div class="slds-col slds-size_12-of-12 slds-small-size_6-of-12 slds-m-bottom_small">
+             <div class="slds-box" style="padding:30px; background: #F9F9FF;border-radius: 0px;box-shadow: 3px 3px 12px #ddd;">
+               <p class="slds-m-bottom_large" style="font-size:23px; line-height:35px;">"Unblock Health is ready to unlock barriers standing in the way of real-world interoperability, meaningful patient empowerment, open data access."</p>
+               <div class="slds-grid slds-wrap slds-gutters">
+                 <div class="slds-col slds-size_12-of-12 slds-small-size_8-of-12 slds-m-bottom_xx-small">
+                   <div class="slds-clearfix slds-m-bottom_xx-small">
+                     <div class="slds-float_left">
+                       <span class="slds-avatar slds-avatar_circle slds-avatar_large">
+                         <img alt="Person name" src="/images/avatar.jpg" title="">
+                         </span>
+                     </div>
+                     <div class="slds-float_left slds-text-body_small slds-m-left_small slds-m-top_xx-small" style="line-height: 18px;">
+                       <b class="slds-text-heading_small">Leona Max</b><br> <span style="font-size:13px;">Director, Customer Support &
+                         Experience</span>
+                     </div>
+                     </div>
+                 </div>
+                 <div class="slds-col slds-size_12-of-12 slds-small-size_4-of-12 slds-m-bottom_xx-small slds-text-align_right">
+                   <a href="#."><img src="/images/testim-logo-2.jpg" alt="" height="50"></a>
+                 </div>
+               </div>
+             </div>
+           </div>
+           </aside>  
+       </article>
+   
+       <!-- bottom content -->
+       <article style="background-image: linear-gradient(180deg, #F2F6FF, #fff);" class="slds-p-top_xx-large">
+         <div class="slds-container_fluid slds-container_center slds-p-left_small slds-p-right_small">
+       <div class="slds-grid slds-wrap slds-gutters slds-grid_vertical-align-center">
+         <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12">
+           <div class="slds-m-left_large">
+         <aside class="slds-m-bottom_xx-large">
+           <h2 style="font-size: 44px; line-height:50px;">Try Unblock Health</h2>
+           <p style="font-size: 20px; line-height:30px;">The future of patient access to health information and patient satisfaction will only get faster-paced. Unblock Health is ready to help HDOs, providers, and physicians meet patients at life-speed</p>
+         </aside>
+         <aside class="slds-form-element slds-m-bottom_xx-large">
+             <div class="slds-form-element__control">
+             <input type="text" id="form-element-03" placeholder="Work Email*" required="" class="slds-input slds-p-vertical_xx-small" style="width:55%;" />
+             <button class="slds-button slds-button_brand slds-p-vertical_x-small slds-p-horizontal_medium slds-color__text_gray-1">
+               <span class="slds-text-body_small" style="font-size:16px;"><b>Try for free</b></span></button>
+             </div>
+         </aside>
+         <aside class="slds-p-bottom_xx-large"> 
+           <div class="slds-grid slds-wrap slds-gutters slds-grid_vertical-align-center">
+             <div class="slds-col slds-size_12-of-12 slds-small-size_6-of-12 slds-m-bottom_xx-small slds-border_right">
+               <div class="slds-m-right_small">
+               <div class="slds-grid slds-wrap slds-gutters">
+                 <div class="slds-col slds-size_4-of-12 slds-m-bottom_xx-small">
+                 <a href="#."><img src="/images/home-blog-thumb-1.png" alt="" style="width: 100%; height: 65px; object-fit: cover;"></a>
+                 </div>
+                 <div class="slds-col slds-size_4-of-12 slds-m-bottom_xx-small">
+                   <a href="#."><img src="/images/home-blog-thumb-2.png" alt="" style="width: 100%; height: 65px; object-fit: cover;"></a>
+                   </div>
+                   <div class="slds-col slds-size_4-of-12 slds-m-bottom_xx-small">
+                     <a href="#."><img src="/images/home-blog-thumb-3.png" alt="" style="width: 100%; height: 65px; object-fit: cover;"></a>
+                     </div>
+                   </div>
+                   </div>
+             </div>
+             <div class="slds-col slds-size_12-of-12 slds-small-size_6-of-12 slds-m-bottom_xx-small">
+               <div class="slds-m-bottom_xx-small slds-m-left_small">
+               Want a tour of Unblock Health blog? <br>
+           <a href="#."><b>Get a Blog</b><span class="slds-icon_container slds-icon-utility-chevronright slds-current-color slds-m-left_x-small" title="">
+             <svg class="slds-icon slds-icon_xx-small slds-color__fill_gray-8" aria-hidden="true">
+             <use xlink:href="/icons/utility-sprite/svg/symbols.svg#chevronright"></use>
+             </svg>
+             </span></a> 
+             </div>
+             </div>
+           </div>
+         </aside>
+         </div>
+         </div>
+         <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12" style="display: flex;align-self: flex-end;">
+           <aside class="slds-text-align_right"><img src="/images/unblock-screen.png" alt="" ></aside>
+         </div>
+       </div>
+       </div>
+       </article>
+   
+     </main>
+     <!-- main < ends < -->
+   
+     <!-- footer > starts > -->
+     <footer class="slds-p-vertical_xx-large" style="background: #1D2B36;">
+       <article class="slds-container_fluid slds-container_center slds-p-left_small slds-p-right_small slds-text-align_center slds-color__text_gray-8">
+         Comprehensive Healthcare Suite of Patient Advocacy Services Designed for Patients and Consumers - Unblock Health | Copyright © 2022. All Rights Reserved.
+       </article>  
+     </footer>
+     <!-- footer < ends < -->
+</section> 
 
-{{ partial "health-information.html" . }}
-
-{{ partial "about.html" . }}
-
-{{ partial "service.html" . }}
-
-{{ partial "subscribe.html" . }}
-
-{{ partial "register.html" . }}
-
-{{ partial "partners.html" . }}
-
-{{ partial "footer.html" . }}
+</body>
+</html>

@@ -1,0 +1,92 @@
+/* Normalize styles >---> */
+html{background-image: linear-gradient(to bottom, #f2f6ff, #f5f8ff, #f8f9ff, #fbfbff, #fdfdff, #fefeff, #fefeff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);}
+body, p {font-size:16px; line-height: 24px;color: #314351;font-family: Arial, Helvetica, sans-serif!important;}
+h1, h2, h3, h4, h5, h6 {margin-bottom: 20px; font-weight: 700; color: #1D2B36;}
+p, ul, ol {margin-bottom: 20px;}
+a {color:#1292EE;}
+h1 {font-size: 32px; line-height: 40px;}   
+h2 {font-size: 18px; line-height: 21px;}   
+h3 {font-size: 17px; line-height: 20px;}   
+h4 {font-size: 16px; line-height: 20px;}   
+h5 {font-size: 15px; line-height: 20px;}   
+h6 {font-size: 14px; line-height: 20px;}   
+
+.slds-md-card ol, .slds-md-card ul {
+    list-style: inside!important;
+    list-style-type: revert!important;
+}
+.slds-md-card ol li p, .slds-md-card ul li p {
+    display: inline-block!important;
+}
+
+.slds-tabs_default__item.slds-is-active:after {
+    background-color: var(--slds-c-tabs-item-color-border-active,var(--sds-c-tabs-item-color-border-active,#3E3E3C));
+}
+.slds-tabs--default__item:hover:after, .slds-tabs_default__item:hover:after {
+    background-color: var(--slds-c-tabs-item-color-border-hover,var(--sds-c-tabs-item-color-border-hover,#3E3E3C));
+}
+.slds-tabs_default .slds-text-link:hover {
+    text-decoration: none;
+}
+.slds-card+.slds-card {
+    margin-top: 2rem;
+}
+.slds-badge {
+    font-size: 14px!important;
+}
+.slds-text-body--small, .slds-text-body_small {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.slds-breadcrumb__item.slds-truncate {
+    margin-left: -5px;
+    padding-left: 12px;
+}
+.slds-breadcrumb__item.slds-truncate:before {
+    left: 0!important;
+}
+.slds-notify h2 {
+    color: #fff !important;
+    margin-bottom: 0px !important;
+    font-size: 16px!important;
+}
+.slds-breadcrumb .slds-breadcrumb__item:before, .slds-breadcrumb .slds-list__item:before {
+    font-weight: 700;
+}
+.slds-text-color_success {
+    color: #04844B!important;
+}
+.slds-button_brand {
+    border: 1px solid #1292EE!important;
+    background-color: #1292EE!important;
+}
+.slds-button_brand:hover {
+    border: 1px solid #0176d3!important;
+    background-color: #0176d3!important;
+}
+.slds-button_success {
+    border: 1px solid #04844B!important;
+    background-color: #04844B!important;
+}
+.slds-button_success:hover {
+    border: 1px solid #45c65a!important;
+    background-color: #45c65a!important;
+}
+.slds-carousel__indicator-action {
+    border: 2px solid #0070D2;
+}
+.slds-carousel__indicator-action.slds-is-active, .slds-carousel__indicator-action.slds-is-active:hover {
+    background: #3E3E3C;
+    border-color: #3E3E3C;
+}
+/* -- newly added ends <--< */
+
+main {min-height: calc(55vh);}
+/* /Normalize styles <---< */
+
+
+/* SLDS styles >---> */
+
+
+/* /SLDS styles <---< */
