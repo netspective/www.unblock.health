@@ -66,12 +66,12 @@ h6 {font-size: 14px; line-height: 20px;}
     background-color: #0176d3!important;
 }
 .slds-button_success {
-    border: 1px solid #04844B!important;
-    background-color: #04844B!important;
+    border: 1px solid #05a675!important;
+    background-color: #05a675!important;
 }
 .slds-button_success:hover {
-    border: 1px solid #45c65a!important;
-    background-color: #45c65a!important;
+    border: 1px solid #008e5e!important;
+    background-color: #008e5e!important;
 }
 .slds-carousel__indicator-action {
     border: 2px solid #0070D2;
