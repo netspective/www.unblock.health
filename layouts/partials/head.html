@@ -44,7 +44,22 @@
           <div class="slds-col slds-size_12-of-12">
             
             <div class="slds-tabs_default slds-tabs_medium slds-grid slds-grid_align-center">
-              <ul class="slds-tabs_default__nav slds-m-bottom_none slds-wrap" style="border-bottom: 0px;"><li class="slds-tabs_default__item  slds-is-active " title="Home">
+              <ul class="slds-tabs_default__nav slds-m-bottom_none slds-wrap" style="border-bottom: 0px;">
+                {{- $activeMenu := .activeMenu -}}
+              {{- $context := .context -}}
+              {{- if $context.Site.Params.topNavbarMenu -}}
+              {{- $count := 1 -}}
+              {{- range $elem_index, $topMenu := $context.Site.Params.topNavbarMenu -}}
+              {{- $upcount := add $count $elem_index -}}
+              {{- with $context.Site.Params.topNavbarMenuLink -}}
+              {{- $path := index . $elem_index -}}
+              {{- $path_url := path.Join $context.Site.Params.hostName $path -}}
+              <li class="slds-tabs_default__item  {{ if eq $activeMenu $topMenu }} slds-is-active {{ end }}" title="{{ $topMenu }}">
+                <a class="slds-tabs_default__link " href="{{ $path_url }}" id="{{ $topMenu | urlize }}-top-menu"><b>{{ $topMenu }}</b></a>              
+              {{- end -}}
+              {{- end -}}
+              {{- end -}}
+                {{/*  <li class="slds-tabs_default__item  slds-is-active " title="Home">
                   <a class="slds-tabs_default__link " href="/" id="Home"><b>Home</b></a>
                 </li><li class="slds-tabs_default__item " title="About">
                   <a class="slds-tabs_default__link  slds-text-link " href="#about" id="About"><b>About</b></a>
@@ -64,7 +79,8 @@
                   <a class="slds-tabs_default__link  slds-text-link" href="#." id="FAQs"><b>FAQs</b></a>
                 </li><li class="slds-tabs_default__item " title="Patient Impact Stories">
                   <a class="slds-tabs_default__link  slds-text-link" href="#." id="Patient Impact Stories"><b>Patient Impact Stories</b></a>
-                </li></ul>
+                </li>  */}}
+            </ul>
             </div>
           </div>
         </div>
