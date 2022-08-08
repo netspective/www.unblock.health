@@ -1,4 +1,7 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://next.unblock.health/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = "ananke" 
+[params]
+topNavbarMenu                     = ["Home","About","Services","Register","News","Press","Events","Blog","FAQs","Patient Impact Stories"]
+topNavbarMenuLink                 = ["/","#about","#service","#.","/news/","#.","#.","#.","#.","#."]
