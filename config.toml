@@ -4,4 +4,4 @@ title = 'My New Hugo Site'
 theme = "ananke" 
 [params]
 topNavbarMenu                     = ["Home","About","Services","Register","News","Press","Events","Blog","FAQs","Patient Impact Stories"]
-topNavbarMenuLink                 = ["/","#about","#service","#.","/news/","#.","#.","#.","#.","#."]
+topNavbarMenuLink                 = ["/","#about","#service","#.","/news","/press","#.","/blog","#.","#."]

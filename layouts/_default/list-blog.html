@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unblock Health</title>
+    <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">    
+    <link rel="stylesheet preload" as="style"  href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.14.2/styles/salesforce-lightning-design-system.min.css" integrity="sha512-v9eTZELqSZcRlIRltjIbpM55zkTQ9azkDAjI0IByyjHLWty1U2+CSPtnNxGpC3FFkpsKwAOfciCv4PWhW/pQGw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
+</head>
+<body>
+<section> 
+<article style="background-image: linear-gradient(180deg, #F2F6FF, #fff);">  
+  <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
+   
+  {{ $context := . }}
+  {{- partialCached "head" (dict "activeMenu" "Blog" "context" $context ) "blog-page-key" -}}  
+   </header>
+  </article> 
+<main>
+<section>   
+  <div class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
+        <h1>Blog</h1>
+        {{- $newsWithArchetypePages :=  ( where .Site.RegularPages "Section" "in" (slice "blog" )) -}}
+        {{- $postCount := len $newsWithArchetypePages -}} 
+        {{- $paginator := .Paginate ($newsWithArchetypePages.ByDate.Reverse) -}} 
+        {{- range $paginator.Pages -}}
+        <article class="slds-card">
+        <div class="slds-p-around_medium slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_2-of-12 slds-m-bottom_x-small">
+            <span class="slds-avatar" style="width: 100%; height:145px;">
+            <a href="#."><img src="/images/noimage.jpg" alt="" style="height:145px; object-fit: cover; border-radius: 5px;"></a></span></div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_9-of-12 slds-large-size_10-of-12 slds-m-top_xx-small">
+            <h2 class="slds-text-heading_medium slds-m-bottom_small" style="font-weight: 700; font-size: 24px;line-height: 26px;">
+                <a href="#">{{ .Params.title }}</a>
+                </h2>
+                <aside>
+                <p class="slds-m-bottom_small" style="line-height:21px!important;">{{ .Summary | safeHTML | truncate 200 }}</p>
+                <div class="slds-clearfix">
+                <div class="slds-float_left">
+                    <p class="slds-m-bottom_xx-small slds-color__text_gray-9"><span class="slds-icon_container">
+                    <svg class="slds-icon slds-icon-text-default slds-icon_xx-small slds-m-right_x-small slds-color__fill_gray-9" aria-hidden="true" style="position:relative; top:-2px;">
+                    <use xlink:href="/icons/utility-sprite/svg/symbols.svg#event"></use>
+                    </svg>
+                    </span><time datetime="2022-08-16" style="font-size:15px;">{{ .Date.Format "Jan 2, 2006" }}</time></p>
+                </div>
+                <div class="slds-float_right">
+                <div class="">
+                <a href="#." style="text-decoration:none;">           
+                <button class="slds-button slds-button_outline-brand slds-p-around_x-small slds-m-right_xx-small" title="">
+                    <img src="/images/facebook.svg" class="" alt="" width="16" height="16">
+                </button>
+                </a>
+                <a href="#." style="text-decoration:none;">
+                <button class="slds-button slds-button_outline-brand slds-p-around_x-small slds-m-right_xx-small" title="">
+                    <img src="/images/twitter.svg" class="" alt="" width="16" height="16">
+                </button>
+                </a>
+                <a href="#." style="text-decoration:none;">
+                <button class="slds-button slds-button_outline-brand slds-p-around_x-small slds-m-right_xx-small" title="">
+                    <img src="/images/linkedin.svg" class="" width="16" height="16">
+                </button>
+                </a>
+                <a href="#." style="text-decoration:none;">
+                <button class="slds-button slds-button_outline-brand slds-p-around_x-small slds-m-right_xx-small" title="">
+                    <img src="/images/email.svg" class="" alt="" width="16" height="16">
+                </button>
+                </a>         
+                </div>
+                </div>
+                </div>
+            </aside>    
+            </div>
+        </div>
+        </article>
+        {{- end -}}
+
+        {{/*  <aside class="slds-align_absolute-center slds-m-top_x-large">
+        <div class="slds-button-group" role="group">
+        <a href="#."><button class="slds-button slds-button_neutral"><svg class="slds-icon slds-icon-text-default slds-icon_xx-small slds-m-right_xx-small slds-color__fill_gray-9" aria-hidden="true"><use xlink:href="icons/utility-sprite/svg/symbols.svg#chevronleft"></use></svg>Prev</button></a>
+        <a href="#."><button class="slds-button slds-button_neutral">1</button></a>
+        <a href="#."><button class="slds-button slds-button_neutral">2</button></a>
+        <a href="#."><button class="slds-button slds-button_neutral">3</button></a>
+        <a href="#."><button class="slds-button slds-button_neutral">4</button></a>
+        <a href="#."><button class="slds-button slds-button_neutral">5</button></a>
+        <a href="#."><button class="slds-button slds-button_neutral">Next<svg class="slds-icon slds-icon-text-default slds-icon_xx-small slds-m-left_xx-small slds-color__fill_gray-9" aria-hidden="true"><use xlink:href="icons/utility-sprite/svg/symbols.svg#chevronright"></use></svg></button></a>
+        </div>
+        </aside>    */}}
+
+  </div>
+</section>
+</main>
+<!-- main < ends < -->
+
+<!-- footer > starts > -->
+{{- partialCached "footer" (dict "activeMenu" "Blog" ) -}} 
+<!-- footer < ends < -->
+ 
+
+</section> 
+
+</body>
+</html>
