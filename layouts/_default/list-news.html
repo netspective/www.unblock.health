@@ -48,7 +48,7 @@
                     </svg>
                     </span><time datetime="2022-08-16" style="font-size:15px;">{{ .Date.Format "Jan 2, 2006" }}</time></p>
                 </div>
-                <div class="slds-float_right">
+                <div class="slds-float_right slds-hide">
                 <div class="">
                 <a href="#." style="text-decoration:none;">           
                 <button class="slds-button slds-button_outline-brand slds-p-around_x-small slds-m-right_xx-small" title="">
@@ -90,6 +90,11 @@
         <a href="#."><button class="slds-button slds-button_neutral">Next<svg class="slds-icon slds-icon-text-default slds-icon_xx-small slds-m-left_xx-small slds-color__fill_gray-9" aria-hidden="true"><use xlink:href="icons/utility-sprite/svg/symbols.svg#chevronright"></use></svg></button></a>
         </div>
         </aside>    */}}
+        <!-- paginations starts -->
+        <div class="slds-pagination git-buttons-row slds-p-top_x-large slds-p-bottom_x-small slds-m-bottom_large slds-text-align_center slds-align_absolute-center"><span class="slds-m-right_small slds-m-left_small">{{ $postCount }} items</span>
+            {{ template "_internal/pagination.html" . }}
+        </div>
+    <!-- paginations ends -->
 
   </div>
 </section>

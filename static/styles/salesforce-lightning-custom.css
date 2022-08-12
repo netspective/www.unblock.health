@@ -87,7 +87,30 @@ main {min-height: calc(55vh);}
 /* /Normalize styles <---< */
 
 
-/* SLDS styles >---> */
+.slds-pagination ul {
+    display: inline-block;
+    top: 6px;
+    position: relative
+}
 
+.slds-pagination li {
+    float: left !important
+}
 
-/* /SLDS styles <---< */
+.slds-pagination li a {
+    border: 1px solid #cfcece;
+    padding: 7px 10px;
+    font-size: 14px;
+    text-decoration: none !important;
+    background: #fff;
+
+}
+
+.slds-pagination li a:hover {
+    background: #f1f1f1
+}
+
+.slds-pagination li.active a {
+    background: #006dcc;
+    color: #fff
+}
