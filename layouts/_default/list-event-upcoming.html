@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unblock Health</title>
+    <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">    
+    <link rel="stylesheet preload" as="style"  href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.14.2/styles/salesforce-lightning-design-system.min.css" integrity="sha512-v9eTZELqSZcRlIRltjIbpM55zkTQ9azkDAjI0IByyjHLWty1U2+CSPtnNxGpC3FFkpsKwAOfciCv4PWhW/pQGw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
+</head>
+<body>
+<section> 
+<article style="background-image: linear-gradient(180deg, #F2F6FF, #fff);">  
+  <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
+   
+  {{ $context := . }}
+  {{- partialCached "head" (dict "activeMenu" "News" "context" $context ) "news-page-key" -}}  
+   </header>
+</article> 
+
+<!-- main starts > -->
+<main>
+<section>   
+  <div class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
+    <h1>Events</h1>
+
+    <div class="slds-notify_container slds-is-relative">
+      <div class="slds-notify slds-notify_toast slds-theme_info slds-m-bottom_small slds-m-top_none" role="status">
+        <span class="slds-assistive-text">info</span>
+        <span class="slds-icon_container slds-icon-utility-info slds-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
+          <svg class="slds-icon slds-icon_small" aria-hidden="true">
+            <use xlink:href="/icons/utility-sprite/svg/symbols.svg#info"></use>
+          </svg>
+        </span>
+        <div class="slds-notify__content">
+          <h2 class="slds-text-heading_small">Don't miss these events focused on patient advocacy, patient empowerment, data access, & transparency.</h2>
+        </div>
+        
+      </div>
+    </div>
+
+    <ul class="slds-tabs_default__nav slds-wrap slds-m-bottom_large slds-align_absolute-center slds-m-top_medium slds-m-bottom_x-large" role="tablist">
+      <li class="slds-tabs_default__item slds-is-active" title="Upcoming Events">
+       <a class="slds-tabs_default__link" href="/events" id="upcoming-event-tab"><b>Upcoming Events</b></a>
+      </li>
+      <li class="slds-tabs_default__item" title="Past Events">
+       <a class="slds-tabs_default__link slds-text-link" href="/events/past" id="past-event-tab"><b>Past Events</b></a>
+      </li><li class="slds-tabs_default__item" title="Canceled Events">
+        <a class="slds-tabs_default__link slds-text-link" href="/events/cancelled" id="canceled-event-tab"><b>Cancelled Events</b></a>
+        </li></ul>
+
+        {{-  $postCount := len (where (where .Pages.ByDate "Params.enddate" "ge" (now.Format "2006-01-02")) "Params.eventcancelled" "ne" "true")  -}} 
+        {{ $paginator := .Paginate (where (where .Pages.ByDate "Params.enddate" "ge" (now.Format "2006-01-02")) "Params.eventcancelled" "ne" "true") }}                
+        {{/*  {{-  $paginator := .Paginate (where (where (where (.Site.Pages.ByParam "eventdate") "Section" "in" (slice "upcoming") )  "Params.enddate" "ge" (now.Format "2006-01-02")) "Params.openprojectcustomfields.eventcancelled" "ne" "t") -}}  */}}
+        {{-  range $paginator.Pages  -}}
+        {{-  .Render "li-event"  -}}
+        {{-  end  -}}
+<div class="slds-pagination git-buttons-row slds-p-top_x-large slds-p-bottom_x-small slds-m-bottom_large slds-text-align_center slds-align_absolute-center slds-hide"><span class="slds-m-right_small slds-m-left_small">{{ $postCount }} items</span>
+  {{ template "_internal/pagination.html" . }}
+</div>
+
+</div>
+</section>
+</main>
+<!-- main < ends < -->
+
+<!-- footer > starts > -->
+{{- partialCached "footer" (dict "activeMenu" "Events" ) -}} 
+<!-- footer < ends < -->    
+<script src="/js/event-date.js"></script>
+</section>
+</body>
+</html>
