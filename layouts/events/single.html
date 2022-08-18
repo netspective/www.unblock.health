@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unblock Health</title>
+    <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">    
+    <link rel="stylesheet preload" as="style"  href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.14.2/styles/salesforce-lightning-design-system.min.css" integrity="sha512-v9eTZELqSZcRlIRltjIbpM55zkTQ9azkDAjI0IByyjHLWty1U2+CSPtnNxGpC3FFkpsKwAOfciCv4PWhW/pQGw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
+</head>
+<body>
+<section> 
+<article style="background-image: linear-gradient(180deg, #F2F6FF, #fff);">  
+  <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
+   
+  {{ $context := . }}
+  {{- partialCached "head" (dict "activeMenu" "News" "context" $context ) "news-page-key" -}}  
+   </header>
+</article> 
+
+<!-- main starts > -->
+<main>
+<section>   
+  <div class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
+
+    <aside class="slds-m-bottom_small">
+      <nav role="navigation" aria-label="Breadcrumbs">
+        <ol class="slds-breadcrumb slds-list_horizontal slds-wrap slds-m-bottom_none slds-text-body_small" style="flex-wrap: nowrap;font-size: 13px;" itemprop="itemListElement" itemscope="" itemtype=""><li class="slds-breadcrumb__item">
+                <a itemprop="item" href="#."><span itemprop="name">Home</span></a>
+                <meta itemprop="position" content="1">
+            </li><li class="slds-breadcrumb__item">
+                <a itemprop="item" href="#."><span itemprop="name">Events</span></a>
+                <meta itemprop="position" content="2">
+            </li><li class="slds-breadcrumb__item slds-p-left_x-small slds-truncate">
+              {{ .Params.title }}</li>
+        </ol>
+     </nav>
+    </aside>
+    {{- $startDate :=  dateFormat "January 2, 2006" .Params.eventdate  -}}
+    {{ $endDate :=  dateFormat "January 2, 2006" .Params.enddate }}
+
+    {{ $day := dateFormat "Monday" .Params.eventdate }}
+    {{ $month := dateFormat "January" .Params.eventdate }}
+    {{ $daydate := dateFormat "02" .Params.eventdate }}
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12">
+        <img src="/images/news-image-3.jpg" alt="" style="border-radius: 5px; width:100%; height: 400px; object-fit: cover;">
+    </div>
+    <article class="slds-card slds-p-around_medium slds-container_large slds-container_center" style="margin-top:-100px;">
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-m-top_xx-small">
+            <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_x-small">
+              <div class="slds-media__figure slds-m-left_small slds-m-bottom_small">
+                <div class="slds-text-align_center" style="width: 105px;">
+                    <div class="slds-box slds-box_xx-small slds-has-bottom-magnet slds-text-title_caps slds-theme_success slds-color__text_gray-1" style="border:2px solid #04844B;">
+                    <div><b>{{ $month }}</b></div>
+                    </div>
+                    <div class="slds-box slds-box_xx-small slds-has-top-magnet slds-text-color_success" style="border:2px solid #04844B;">
+                    <div class="slds-text-heading_large"><b>{{ $daydate }}</b></div>
+                    </div>
+                </div>
+              </div>
+              <div class="slds-col slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_10-of-12">
+                 <h2 class="slds-text-heading_medium slds-m-bottom_small" style="font-weight: 700; font-size: 24px;line-height: 26px;">
+                  <b>{{ .Params.title }}</b></h2>
+                    <div class="slds-m-bottom_small">
+                        {{- if eq $startDate  $endDate  -}}
+                            <p class="slds-text-heading_small slds-m-bottom_x-small">
+                            <span class="slds-icon_container">
+                                <svg class="slds-icon slds-icon-text-default slds-icon_xx-small slds-m-right_x-small" aria-hidden="true">
+                                <use xlink:href="/icons/utility-sprite/svg/symbols.svg#event"></use>
+                                </svg>
+                            </span>
+                            {{- $endDate -}}<span class="slds-m-left_xx-small event-date" data-eventDate="{{ dateFormat "01/02/2006" .Params.eventdate }}" data-enddate="{{ dateFormat "01/02/2006" .Params.enddate }}" style="font-size:12px!important;"></span>
+                            </p>
+                        {{- else -}}
+                        {{- if eq (dateFormat "2006" .Params.eventdate) (dateFormat "2006" .Params.enddate)  -}}
+                            <p class="slds-text-heading_small slds-m-bottom_x-small">
+                                <span class="slds-icon_container">
+                                    <svg class="slds-icon slds-icon-text-default slds-icon_xx-small slds-m-right_x-small" aria-hidden="true">
+                                    <use xlink:href="/icons/utility-sprite/svg/symbols.svg#event"></use>
+                                    </svg>
+                                </span>
+                                {{ dateFormat "January 2" .Params.eventdate  }}&nbsp;to&nbsp;{{ $endDate  }}<span class="slds-m-left_xx-small event-date" data-eventDate="{{ dateFormat "01/02/2006" .Params.eventdate }}" data-enddate="{{ dateFormat "01/02/2006" .Params.enddate }}" style="font-size:12px!important;"></span>
+                            </p>
+                        {{- else -}}
+                        <p class="slds-text-heading_small slds-m-bottom_x-small">
+                            <span class="slds-icon_container">
+                                <svg class="slds-icon slds-icon-text-default slds-icon_xx-small slds-m-right_x-small" aria-hidden="true">
+                                <use xlink:href="/icons/utility-sprite/svg/symbols.svg#event"></use>
+                                </svg>
+                            </span>
+                            {{ $startDate  }}&nbsp;to&nbsp;{{ $endDate  }}<span class="slds-m-left_xx-small event-date" data-eventDate="{{ dateFormat "01/02/2006" .Params.eventdate }}" data-enddate="{{ dateFormat "01/02/2006" .Params.enddate }}" style="font-size:12px!important;"></span>
+                        </p>
+                        {{- end -}}
+                        {{- end -}}
+
+                        <p class="slds-text-heading_small slds-m-bottom_x-small">
+                            <span class="slds-icon_container">
+                            <svg class="slds-icon slds-icon-text-default slds-icon_xx-small slds-m-right_x-small" aria-hidden="true">
+                            <use xlink:href="/icons/utility-sprite/svg/symbols.svg#checkin"></use>
+                            </svg>
+                           </span>
+                         {{ .Params.location }}
+                       </p>
+                    </div>
+                </div>
+            </div>
+
+            <aside>
+                <p>{{ .Content }}</p>            
+                {{/*  <p class="slds-m-bottom_small"><a href="#.">Read on statnews.com</a></p>  */}}
+                <hr class="slds-m-vertical_medium">
+                {{/*  <div>
+                  <h3 class="slds-text-title_caps slds-m-bottom_xx-small slds-color__text_gray-9"><b class="slds-text-body_small">Share</b></h3>
+                  <a href="#.">
+                    <button class="slds-button slds-button_outline-brand slds-p-around_small slds-p-horizontal_small slds-p-vertical_xx-small slds-m-around_xx-small" style="height:45px;justify-content: flex-start;">
+                     <embed class="slds-button__icon slds-button__icon_left slds-icon_small" src="/images/facebook.svg">Facebook
+                    </button>
+                   </a>
+                    <a href="#.">
+                     <button class="slds-button slds-button_outline-brand slds-p-horizontal_small slds-p-vertical_xx-small slds-m-around_xx-small" style="height:45px;justify-content: flex-start;">
+                       <embed class="slds-button__icon slds-button__icon_left slds-icon_small" src="/images/twitter.svg" width="16" height="16">Twitter
+                     </button>
+                    </a>                  
+                    <a href="#.">
+                            <button class="slds-button slds-button_outline-brand slds-p-around_small slds-p-horizontal_small slds-p-vertical_xx-small slds-m-around_xx-small" style="height:45px;justify-content: flex-start;">
+                            <embed class="slds-button__icon slds-button__icon_left slds-icon_small" src="/images/linkedin.svg">Linkedin
+                        </button>
+                    </a>      
+                    <a href="#.">
+                        <button class="slds-button slds-button_outline-brand slds-p-around_small slds-p-horizontal_small slds-p-vertical_xx-small slds-m-around_xx-small" style="height:45px;justify-content: flex-start;">
+                         <embed class="slds-button__icon slds-button__icon_left slds-icon_small" src="/images/email.svg">Email
+                        </button>
+                    </a>
+                </div>  */}}
+          </aside>    
+        </div>
+    </article>
+
+    <div class="slds-m-top_x-large">
+    {{- with .NextInSection -}}
+    <h2>Next Event</h2>    
+    {{- .Render "li-event" -}} 
+    {{- end -}}
+    </div>
+
+  </div>
+</section>
+</main>
+<!-- main < ends < -->
+
+<!-- footer > starts > -->
+{{- partialCached "footer" (dict "activeMenu" "Events" ) -}} 
+<!-- footer < ends < -->    
+<script src="/js/event-date.js"></script>    
+
+</section> 
+
+</body>
+</html>
