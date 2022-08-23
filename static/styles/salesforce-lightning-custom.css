@@ -6,18 +6,25 @@ p, ul, ol {margin-bottom: 20px;}
 a {color:#1292EE;}
 a:hover{text-decoration: none!important;}
 h1 {font-size: 32px; line-height: 40px;}   
-h2 {font-size: 18px; line-height: 21px;}   
-h3 {font-size: 17px; line-height: 20px;}   
+h2 {font-size: 20px; line-height: 24px;}   
+h3 {font-size: 18px; line-height: 20px;}   
 h4 {font-size: 16px; line-height: 20px;}   
 h5 {font-size: 15px; line-height: 20px;}   
 h6 {font-size: 14px; line-height: 20px;}   
 
 .slds-md-card ol, .slds-md-card ul {
-    list-style: inside!important;
     list-style-type: revert!important;
+    padding-left: 30px;
+}
+.slds-md-card ol ol, .slds-md-card ul ul {
+    padding-left:30px;
+    margin-top: 15px;
+}
+.slds-md-card ol li, .slds-md-card ul li {
+    margin-bottom:10px;
 }
 .slds-md-card ol li p, .slds-md-card ul li p {
-    display: inline-block!important;
+    display: inline!important;
 }
 
 .slds-tabs_default__item.slds-is-active:after {
@@ -86,31 +93,36 @@ h6 {font-size: 14px; line-height: 20px;}
 main {min-height: calc(55vh);}
 /* /Normalize styles <---< */
 
-
 .slds-pagination ul {
     display: inline-block;
     top: 6px;
     position: relative
 }
-
 .slds-pagination li {
     float: left !important
 }
-
 .slds-pagination li a {
     border: 1px solid #cfcece;
     padding: 7px 10px;
     font-size: 14px;
     text-decoration: none !important;
     background: #fff;
-
 }
-
 .slds-pagination li a:hover {
     background: #f1f1f1
 }
-
 .slds-pagination li.active a {
     background: #006dcc;
     color: #fff
+}
+.slds-input-browse {
+    padding-right: var(--slds-c-input-spacing-horizontal-end,var(--sds-c-input-spacing-horizontal-end,1rem));
+    padding-left: var(--slds-c-input-spacing-horizontal-start,var(--sds-c-input-spacing-horizontal-start,.75rem));
+    width: 100%;
+    min-height: calc(1.875rem + (1px * 2));
+    line-height: 1.875rem;
+    border: 1px solid var(--slds-c-input-color-border,var(--sds-c-input-color-border,#c9c9c9));
+    border-radius: var(--slds-c-input-radius-border,var(--sds-c-input-radius-border,.25rem));
+    background-color: var(--slds-c-input-color-background,var(--sds-c-input-color-background,#fff));
+    display: inline-block;
 }
