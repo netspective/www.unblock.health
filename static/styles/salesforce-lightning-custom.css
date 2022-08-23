@@ -126,3 +126,19 @@ main {min-height: calc(55vh);}
     background-color: var(--slds-c-input-color-background,var(--sds-c-input-color-background,#fff));
     display: inline-block;
 }
+/* / patient stories slider > starts / */
+    .uh-carousel{border:none;}
+
+    @media screen and (min-width:1200px) {
+    .uh-carousel{height: 650px !important;}
+    }
+    @media screen and (max-width: 1199px) {
+    .uh-carousel{height: 560px !important;}
+    }
+    @media screen and (max-width:991px) {
+    .uh-carousel{height: 420px !important;}
+    }
+    @media screen and (max-width:767px) {
+    .uh-carousel{height: 310px !important;}
+    }
+/* / patient stories slider < ends / */
