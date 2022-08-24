@@ -74,13 +74,23 @@
     <article class="slds-text-align_center slds-p-top_small slds-p-bottom_x-large">
       <aside>
         <ul class="slds-grid slds-grid_align-center slds-list_horizontal slds-has-inline-block-links slds-text-heading_small" style="font-size:18px;flex-wrap: wrap;">
-          <li><a href="#" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>Home</b></a></li>
-          <li><a href="#" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>About</b></a></li>
+          {{- $context := .context -}}
+          {{- if $context.Site.Params.footerNavbarMenu -}}
+          {{- $count := 1 -}}
+          {{- range $elem_index, $footerMenu := $context.Site.Params.footerNavbarMenu -}}
+          {{- $upcount := add $count $elem_index -}}
+          {{- with $context.Site.Params.footerNavbarMenuLink -}}
+          {{- $path := index . $elem_index -}}
+          {{- $path_url := path.Join $context.Site.Params.hostName $path -}}
+          <li><a href="{{ $path_url }}" id="{{ $footerMenu | urlize }}" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>{{ $footerMenu }}</b></a></li>
+          {{- end -}} {{- end -}} {{- end -}}
+
+          {{/*  <li><a href="#" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>About</b></a></li>
           <li><a href="#" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>Services</b></a></li>
           <li><a href="#" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>Register</b></a></li>
           <li><a href="#" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>Sitemap</b></a></li>
-          <li><a href="#" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>Privacy Policy</b></a></li>
-          <li><a href="#" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>Terms and Conditions</b></a></li>
+          <li><a href="privacy-policy" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>Privacy Policy</b></a></li>
+          <li><a href="terms-and-conditions" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>Terms and Conditions</b></a></li>  */}}
           </ul>
         </aside>
       

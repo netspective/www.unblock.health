@@ -301,7 +301,7 @@
       <!-- main < ends < -->
     
     <!-- footer > starts > -->
-    {{- partialCached "footer" (dict "activeMenu" "Home" ) -}} 
+    {{- partialCached "footer" (dict "activeMenu" "Home" "context" $context) "home-page-key" -}} 
     <!-- footer < ends < -->
     
     

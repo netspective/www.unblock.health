@@ -67,7 +67,7 @@
 <!-- main < ends < -->
 
 <!-- footer > starts > -->
-{{- partialCached "footer" (dict "activeMenu" "Events" ) -}} 
+{{- partialCached "footer" (dict "activeMenu" "Events" "context" $context ) "events-page-key" -}} 
 <!-- footer < ends < -->    
 <script src="/js/event-date.js"></script>
 </section>

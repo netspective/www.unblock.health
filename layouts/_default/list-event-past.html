@@ -16,7 +16,7 @@
   <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
    
   {{ $context := . }}
-  {{- partialCached "head" (dict "activeMenu" "Events" "context" $context ) "events-page-key" -}}  
+  {{- partialCached "head" (dict "activeMenu" "Events" "context" $context ) "past-events-page-key" -}}  
    </header>
 </article> 
 
@@ -67,7 +67,7 @@
 <!-- main < ends < -->
 
 <!-- footer > starts > -->
-{{- partialCached "footer" (dict "activeMenu" "Events" ) -}} 
+{{- partialCached "footer" (dict "activeMenu" "Events" "context" $context ) "past-events-page-key" -}} 
 <!-- footer < ends < -->    
 <script src="/js/event-date.js"></script>
 </section>
