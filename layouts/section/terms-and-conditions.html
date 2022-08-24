@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unblock Health</title>
+    <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">    
+    <link rel="stylesheet preload" as="style"  href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.14.2/styles/salesforce-lightning-design-system.min.css" integrity="sha512-v9eTZELqSZcRlIRltjIbpM55zkTQ9azkDAjI0IByyjHLWty1U2+CSPtnNxGpC3FFkpsKwAOfciCv4PWhW/pQGw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
+</head>
+<body>
+<section> 
+<article style="background-image: linear-gradient(180deg, #F2F6FF, #fff);">  
+  <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
+  {{ $context := . }}
+  {{- partialCached "head" (dict "activeMenu" "Terms and Conditions" "context" $context ) "terms-and-conditions-page-key" -}}  
+   </header>
+</article>
+<!-- main starts > -->
+<main>
+<section>   
+  <div class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
+    <h1>{{- .Params.title -}}</h1>
+    <article class="slds-md-card">
+        {{- .Content | safeHTML -}}  
+    </article>
+  </div>
+</section>
+</main>
+<!-- main < ends < -->
+
+<!-- footer > starts > -->
+{{- partialCached "footer" (dict "activeMenu" "Terms and Conditions" ) -}}
+<!-- footer < ends < -->
+
+
+
+      
+
+</section> 
+
+</body>
+</html>

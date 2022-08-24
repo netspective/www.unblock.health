@@ -1,7 +1,6 @@
 ---
 title: "Privacy Policy"
 slug: "privacy-policy"
-layout: "privacy"
 ---
 <p>Last updated: February 13, 2020</p>
 
