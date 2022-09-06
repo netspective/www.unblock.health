@@ -55,7 +55,7 @@
               {{- $path := index . $elem_index -}}
               {{- $path_url := path.Join $context.Site.Params.hostName $path -}}
               <li class="slds-tabs_default__item  {{ if eq $activeMenu $topMenu }} slds-is-active {{ end }}" title="{{ $topMenu }}">
-                <a class="slds-tabs_default__link " href="{{ $path_url }}" id="{{ $topMenu | urlize }}-top-menu"><b>{{ $topMenu }}</b></a>              
+                <a class="slds-tabs_default__link " href="{{ $context.Site.BaseURL }}{{ $path_url }}" id="{{ $topMenu | urlize }}-top-menu"><b>{{ $topMenu }}</b></a>              
               {{- end -}}
               {{- end -}}
               {{- end -}}
