@@ -82,7 +82,7 @@
           {{- with $context.Site.Params.footerNavbarMenuLink -}}
           {{- $path := index . $elem_index -}}
           {{- $path_url := path.Join $context.Site.Params.hostName $path -}}
-          <li><a href="{{ $path_url }}" id="{{ $footerMenu | urlize }}" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>{{ $footerMenu }}</b></a></li>
+          <li><a href="{{ $context.Site.BaseURL }}{{ $path_url }}" id="{{ $footerMenu | urlize }}" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>{{ $footerMenu }}</b></a></li>
           {{- end -}} {{- end -}} {{- end -}}
 
           {{/*  <li><a href="#" class="slds-color__text_gray-1 slds-p-horizontal_small slds-p-vertical_xx-small"><b>About</b></a></li>
