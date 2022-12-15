@@ -11,21 +11,24 @@
     <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
 </head>
 <body>
-<section> 
-<article style="background-image: linear-gradient(180deg, #F2F6FF, #fff);">  
+<section>
+<article>  
   <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
+  <!-- top > starts > -->
   {{ $context := . }}
   {{- partialCached "head" (dict "activeMenu" "Privacy policy" "context" $context ) "privacy-policy-page-key" -}}  
-   </header>
-</article>
+   <!-- top < ends < -->  
+  </header>
+</article>  
+
 <!-- main starts > -->
 <main>
-<section>   
+<section class="slds-color__background_gray-1 slds-p-vertical_x-large">   
   <div class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
-    <h1>{{- .Params.title -}}</h1>
+    <h1 style="font-size: 40px; line-height: 50px;font-weight: 700;">{{- .Params.title -}}</h1>
     <article class="slds-md-card">
-        {{- .Content | safeHTML -}}  
-    </article>
+      {{- .Content | safeHTML -}}  
+  </article>
   </div>
 </section>
 </main>
@@ -33,6 +36,6 @@
 <!-- footer > starts > -->
 {{- partialCached "footer" (dict "activeMenu" "Privacy Policy" "context" $context) "privacy-policy" -}} 
 <!-- footer < ends < -->
-</section>
+</section> 
 </body>
 </html>

@@ -11,20 +11,22 @@
     <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
 </head>
 <body>
-<section> 
-<article style="background-image: linear-gradient(180deg, #F2F6FF, #fff);">  
+<section>
+<article>  
   <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
+  <!-- top > starts > -->       
   {{ $context := . }}
-  {{- partialCached "head" (dict "activeMenu" "Patient Impact Stories" "context" $context ) "patient-impact-stories-page-key" -}}  
-   </header>
-</article>
+  {{- partialCached "head" (dict "activeMenu" "Patient Impact Stories" "context" $context ) "terms-and-conditions-page-key" -}}  
+  <!-- top < ends < -->  
+  </header>
+</article>  
 
 <!-- main starts > -->
 <main>
-<section>   
+<section class="slds-p-vertical_x-large">   
   <div class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
-    <h1>Patient Impact Stories</h1>
-    
+    <h1 class="slds-text-align_center" style="font-size: 40px; line-height: 50px;font-weight: 700;">Patient Impact Stories</h1>
+
     <article class="slds-p-vertical_x-large slds-text-align_center">
       <iframe id="patient-frame-slider" class="uh-carousel" src="/reveal/" width="100%" height="auto"></iframe>
       </iframe>
@@ -68,7 +70,7 @@
 
           <div class="slds-form-element__control slds-m-bottom_medium">
             <input type="text" id="form-element-03" placeholder="Story Title*" class="slds-input slds-p-vertical_x-small">
-            {{/*  <div class="slds-form-element__help" id="form-error-01" slds-has-error>This field is required.</div>  */}}
+            {{/*  <div class="slds-form-element__help" id="form-error-01">This field is required.</div>  */}}
           </div>
           <div class="slds-form-element__control slds-m-bottom_xx-small">
             <textarea id="form-element-01" placeholder="Story Description*" class="slds-input slds-p-vertical_x-small" style="min-height:138px;"></textarea>
@@ -86,10 +88,10 @@
 </section>
 </main>
 <!-- main < ends < -->
-
 <!-- footer > starts > -->
-{{- partialCached "footer" (dict "activeMenu" "Patient Impact Stories" "context" $context) "patient-impact-stories-page-key" -}} 
+{{- partialCached "footer" (dict "activeMenu" "Patient Impact Stories" "context" $context) "faqs" -}} 
 <!-- footer < ends < -->
 </section> 
+
 </body>
 </html>

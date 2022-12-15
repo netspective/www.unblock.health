@@ -11,23 +11,24 @@
     <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
 </head>
 <body>
-<section> 
-<article style="background-image: linear-gradient(180deg, #F2F6FF, #fff);">  
+<section>
+<article>  
   <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
-   
+  <!-- top > starts > -->
   {{ $context := . }}
   {{- partialCached "head" (dict "activeMenu" "Events" "context" $context ) "events-page-key" -}}  
-   </header>
-</article> 
+  <!-- top < ends < -->  
+  </header>
+</article>  
 
 <!-- main starts > -->
 <main>
-<section>   
+<section class="slds-p-vertical_x-large">   
   <div class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
-    <h1>Events</h1>
+    <h1 style="font-size: 40px; line-height: 50px;font-weight: 700;">Events</h1>
 
     <div class="slds-notify_container slds-is-relative">
-      <div class="slds-notify slds-notify_toast slds-theme_info slds-m-bottom_small slds-m-top_none" role="status">
+      <div class="slds-notify slds-notify_toast slds-theme_info slds-m-bottom_small slds-m-top_none" role="status" style="min-width:auto;">
         <span class="slds-assistive-text">info</span>
         <span class="slds-icon_container slds-icon-utility-info slds-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
           <svg class="slds-icon slds-icon_small" aria-hidden="true">
@@ -49,27 +50,26 @@
        <a class="slds-tabs_default__link slds-text-link" href="/events/past" id="past-event-tab"><b>Past Events</b></a>
       </li><li class="slds-tabs_default__item" title="Canceled Events">
         <a class="slds-tabs_default__link slds-text-link" href="/events/cancelled" id="canceled-event-tab"><b>Cancelled Events</b></a>
-        </li></ul>
-
+        </li>
+      </ul>
         {{-  $postCount := len (where (where .Pages.ByDate "Params.enddate" "ge" (now.Format "2006-01-02")) "Params.eventcancelled" "ne" "true")  -}} 
         {{ $paginator := .Paginate (where (where .Pages.ByDate "Params.enddate" "ge" (now.Format "2006-01-02")) "Params.eventcancelled" "ne" "true") }}                
         {{/*  {{-  $paginator := .Paginate (where (where (where (.Site.Pages.ByParam "eventdate") "Section" "in" (slice "upcoming") )  "Params.enddate" "ge" (now.Format "2006-01-02")) "Params.openprojectcustomfields.eventcancelled" "ne" "t") -}}  */}}
         {{-  range $paginator.Pages  -}}
         {{-  .Render "li-event"  -}}
         {{-  end  -}}
-<div class="slds-pagination git-buttons-row slds-p-top_x-large slds-p-bottom_x-small slds-m-bottom_large slds-text-align_center slds-align_absolute-center slds-hide"><span class="slds-m-right_small slds-m-left_small">{{ $postCount }} items</span>
-  {{ template "_internal/pagination.html" . }}
-</div>
 
-</div>
+        <div class="slds-pagination git-buttons-row slds-p-top_x-large slds-p-bottom_x-small slds-m-bottom_large slds-text-align_center slds-align_absolute-center slds-hide"><span class="slds-m-right_small slds-m-left_small">{{ $postCount }} items</span>
+          {{ template "_internal/pagination.html" . }}
+        </div>
+  </div>
 </section>
 </main>
 <!-- main < ends < -->
-
 <!-- footer > starts > -->
 {{- partialCached "footer" (dict "activeMenu" "Events" "context" $context ) "events-page-key" -}} 
-<!-- footer < ends < -->    
-<script src="/js/event-date.js"></script>
+<!-- footer < ends < --> 
+<script src="/js/event-date.js"></script> 
 </section>
 </body>
 </html>

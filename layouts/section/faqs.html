@@ -11,21 +11,23 @@
     <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
 </head>
 <body>
-<section> 
-<article style="background-image: linear-gradient(180deg, #F2F6FF, #fff);">  
-  <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
-   
-  {{ $context := . }}
-  {{- partialCached "head" (dict "activeMenu" "FAQs" "context" $context ) "faqs-page-key" -}}  
-   </header>
-</article> 
+<section>
+  <article>  
+    <header class="slds-container_x-large slds-container_center slds-p-horizontal_small">
+    <!-- top > starts > --> 
+    {{ $context := . }}
+    {{- partialCached "head" (dict "activeMenu" "FAQs" "context" $context ) "faqs-page-key" -}}  
+  <!-- top < ends < -->  
+    </header>
+  </article>  
+
 <!-- main starts > -->
 <main>
-<section>   
-  <div class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
-    <h1>FAQ</h1>
-    <article class="slds-md-card">
-      {{.Content | safeHTML}}        
+  <section class="slds-color__background_gray-1 slds-p-vertical_x-large">  
+  <div class="slds-container_large slds-container_center slds-p-horizontal_small slds-p-vertical_medium slds-p-top_none">
+    <h1 style="font-size: 40px; line-height: 50px;font-weight: 700;">FAQ</h1>
+    <article>
+      {{.Content | safeHTML}} 
     </article>
   </div>
 </section>

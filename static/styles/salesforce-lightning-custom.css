@@ -1,16 +1,29 @@
 /* Normalize styles >---> */
-html{background-image: linear-gradient(to bottom, #f2f6ff, #f5f8ff, #f8f9ff, #fbfbff, #fdfdff, #fefeff, #fefeff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);}
-body, p {font-size:16px; line-height: 24px;color: #314351;font-family: Arial, Helvetica, sans-serif!important;}
-h1, h2, h3, h4, h5, h6 {margin-bottom: 20px; font-weight: 700; color: #1D2B36;}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+html{background:#F4F8FF;}
+body, p {font-size:16px; line-height: 24px;color: #3b3e41;font-family: 'Poppins', sans-serif!important; font-weight: 400;}
+h1, h2, h3, h4, h5, h6 {margin-bottom: 22px; font-weight: 600; color: #555;}
 p, ul, ol {margin-bottom: 20px;}
-a {color:#1292EE;}
+b, dfn, strong {
+    font-weight: 600;
+}
+a {color:#6c8ecc;}
 a:hover{text-decoration: none!important;}
 h1 {font-size: 32px; line-height: 40px;}   
-h2 {font-size: 20px; line-height: 24px;}   
+h2 {font-size: 22px; line-height: 26px;}   
 h3 {font-size: 18px; line-height: 20px;}   
 h4 {font-size: 16px; line-height: 20px;}   
 h5 {font-size: 15px; line-height: 20px;}   
-h6 {font-size: 14px; line-height: 20px;}   
+h6 {font-size: 14px; line-height: 20px;}
+
+/* 
+h1 {font-size: 48px; line-height: 56px;font-weight: 700;}
+h2 {font-size: 40px; line-height: 50px;font-weight: 700;}   
+h3 {font-size: 26px; line-height: 34px;font-weight: 600;}   
+h4 {font-size: 18px; line-height: 22px;font-weight: 600;}   
+h5 {font-size: 16px; line-height: 20px;font-weight: 600;}   
+h6 {font-size: 14px; line-height: 20px;font-weight: 600;}  
+*/  
 
 .slds-md-card ol, .slds-md-card ul {
     list-style-type: revert!important;
@@ -28,10 +41,16 @@ h6 {font-size: 14px; line-height: 20px;}
 }
 
 .slds-tabs_default__item.slds-is-active:after {
-    background-color: var(--slds-c-tabs-item-color-border-active,var(--sds-c-tabs-item-color-border-active,#3E3E3C));
+    background-color: var(--slds-c-tabs-item-color-border-active,var(--sds-c-tabs-item-color-border-active,#2a416a));
 }
 .slds-tabs--default__item:hover:after, .slds-tabs_default__item:hover:after {
-    background-color: var(--slds-c-tabs-item-color-border-hover,var(--sds-c-tabs-item-color-border-hover,#3E3E3C));
+    background-color: var(--slds-c-tabs-item-color-border-hover,var(--sds-c-tabs-item-color-border-hover,#2a416a));
+}
+.slds-tabs_default__item.slds-is-active {
+    --slds-c-tabs-item-text-color: var(--slds-c-tabs-item-text-color-active, var(--sds-c-tabs-item-text-color-active, #2a416a));
+}
+.slds-tabs_default__item.slds-is-active .slds-tabs_default__link {
+    color: #2a416a;
 }
 .slds-tabs_default .slds-text-link:hover {
     text-decoration: none;
@@ -63,15 +82,19 @@ h6 {font-size: 14px; line-height: 20px;}
     font-weight: 700;
 }
 .slds-text-color_success {
-    color: #04844B!important;
+    color: #05a675!important;
 }
 .slds-button_brand {
-    border: 1px solid #1292EE!important;
-    background-color: #1292EE!important;
+    border: 1px solid #6c8ecc!important;
+    background-color: #6c8ecc!important;
 }
 .slds-button_brand:hover {
-    border: 1px solid #0176d3!important;
-    background-color: #0176d3!important;
+    border: 1px solid #7e9bd2!important;
+    background-color: #7e9bd2!important;
+}
+.slds-button_outline-brand {
+    border: 1px solid #6c8ecc!important;
+    color:#6c8ecc!important;
 }
 .slds-button_success {
     border: 1px solid #05a675!important;
@@ -82,13 +105,18 @@ h6 {font-size: 14px; line-height: 20px;}
     background-color: #008e5e!important;
 }
 .slds-carousel__indicator-action {
-    border: 2px solid #0070D2;
+    border: 2px solid #6c8ecc;
 }
 .slds-carousel__indicator-action.slds-is-active, .slds-carousel__indicator-action.slds-is-active:hover {
-    background: #3E3E3C;
-    border-color: #3E3E3C;
+    background: #6c8ecc;
+    border-color: #6c8ecc;
 }
-/* -- newly added ends <--< */
+.slds-tabs_default__link {
+    color: #6c8ecc;
+}
+.slds-text-link:active {
+    color: #2a416a;
+}
 
 main {min-height: calc(55vh);}
 /* /Normalize styles <---< */
@@ -112,7 +140,7 @@ main {min-height: calc(55vh);}
     background: #f1f1f1
 }
 .slds-pagination li.active a {
-    background: #006dcc;
+    background: #6c8ecc;
     color: #fff
 }
 .slds-input-browse {
@@ -126,7 +154,8 @@ main {min-height: calc(55vh);}
     background-color: var(--slds-c-input-color-background,var(--sds-c-input-color-background,#fff));
     display: inline-block;
 }
-/* / patient stories slider > starts / */
+
+/* patient stories slider > starts */
     .uh-carousel{border:none;}
 
     @media screen and (min-width:1200px) {
@@ -141,4 +170,4 @@ main {min-height: calc(55vh);}
     @media screen and (max-width:767px) {
     .uh-carousel{height: 310px !important;}
     }
-/* / patient stories slider < ends / */
+/* patient stories slider < ends */
