@@ -14,7 +14,7 @@
 <section>
   {{ $context := . }}
   {{- partialCached "head" (dict "activeMenu" "Home" "context" $context ) "home-page-key" -}}  
-   
+    
 <article style="background:#3b4862;" class="slds-p-vertical_medium">  
   <div class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
 
@@ -110,14 +110,37 @@ Our Patient Access Workflow Services</p>
  
  <aside class="slds-grid slds-wrap slds-gutters slds-p-top_large slds-grid_vertical-align-center">
    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12">
-     <div class="slds-p-around_medium">      
-     <ul class="slds-list_dotted">
-       <li class="slds-m-bottom_small">Hold healthcare organizations accountable when they do not release medical records in a timely, HIPAA compliant manner, while carefully tracking the often intricate, multi-faceted process of interactions needed, reporting both violations and access champions in the public domain.</li>
-       <li class="slds-m-bottom_small">Request patient-generated health data (PGHD) from mhealth & digital health tech devices and apps.</li>
-       <li class="slds-m-bottom_small">Request an itemized list of all the places that one's health information has been “shared” or sold to facilitate transparency and awareness of human data science practices.</li> 
-       <li class="slds-m-bottom_small">To facilitate a digital workflow for the implementation of addendums that may be flagged by patients and carepartners upon review of their medical records and health information.</li> 
-       </ul>
-       {{/*  <p class="slds-text-align_right"><a href="#."><b>Read More</b></a></p>  */}}
+     <div class="slds-p-around_medium"> 
+      <ul>
+        <li class="slds-m-bottom_small slds-p-left_x-large slds-is-relative">
+          <span class="slds-icon_container slds-icon-action-check slds-icon_container_circle slds-is-absolute slds-text-align_center" style="left:0px;top:6px;padding: 2px;height: 17px;width: 17px;background: #6c8ecc;">
+            <svg class="slds-icon slds-icon_xx-small" aria-hidden="true" style="width:11px; height:11px; position:relative;top: -2px;">
+              <use xlink:href="/icons/action-sprite/svg/symbols.svg#check"></use>
+            </svg>
+          </span>
+          Hold healthcare organizations accountable when they do not release medical records in a timely, HIPAA compliant manner, while carefully tracking the often intricate, multi-faceted process of interactions needed, reporting both violations and access champions in the public domain.</li>
+          <li class="slds-m-bottom_small slds-p-left_x-large slds-is-relative">
+            <span class="slds-icon_container slds-icon-action-check slds-icon_container_circle slds-is-absolute slds-text-align_center" style="left:0px;top:6px;padding: 2px;height: 17px;width: 17px;background: #6c8ecc;">
+              <svg class="slds-icon slds-icon_xx-small" aria-hidden="true" style="width:11px; height:11px; position:relative;top: -2px;">
+                <use xlink:href="/icons/action-sprite/svg/symbols.svg#check"></use>
+              </svg>
+            </span>
+            Request patient-generated health data (PGHD) from mhealth & digital health tech devices and apps.</li>
+          <li class="slds-m-bottom_small slds-p-left_x-large slds-is-relative">
+            <span class="slds-icon_container slds-icon-action-check slds-icon_container_circle slds-is-absolute slds-text-align_center" style="left:0px;top:6px;padding: 2px;height: 17px;width: 17px;background: #6c8ecc;">
+              <svg class="slds-icon slds-icon_xx-small" aria-hidden="true" style="width:11px; height:11px; position:relative;top: -2px;">
+                <use xlink:href="/icons/action-sprite/svg/symbols.svg#check"></use>
+              </svg>
+            </span>
+            Request an itemized list of all the places that one's health information has been “shared” or sold to facilitate transparency and awareness of human data science practices.</li> 
+          <li class="slds-m-bottom_small slds-p-left_x-large slds-is-relative">
+            <span class="slds-icon_container slds-icon-action-check slds-icon_container_circle slds-is-absolute slds-text-align_center" style="left:0px;top:6px;padding: 2px;height: 17px;width: 17px;background: #6c8ecc;">
+              <svg class="slds-icon slds-icon_xx-small" aria-hidden="true" style="width:11px; height:11px; position:relative;top: -2px;">
+                <use xlink:href="/icons/action-sprite/svg/symbols.svg#check"></use>
+              </svg>
+            </span>
+            To facilitate a digital workflow for the implementation of addendums that may be flagged by patients and carepartners upon review of their medical records and health information.</li> 
+        </ul>
        </div>
    </div>
    
@@ -127,7 +150,15 @@ Our Patient Access Workflow Services</p>
    </div>
    
  </aside>  
- 
+     <aside class="slds-form-element slds-m-bottom_xx-large">
+      <div class="slds-text-align_center slds-form-element__control">
+      <button class="slds-button slds-button_outline-brand slds-p-vertical_medium slds-p-horizontal_large slds-color__text_gray-1" id="about-read-more">
+        <span class="slds-text-body_small" style="font-size:22px;"><b>Read more</b></span></button>
+      </div>
+  </aside>
+   <div class="slds-text-align_center">
+   
+   </div>
   </div> 
  </article>   
 
@@ -177,6 +208,12 @@ Our Patient Access Workflow Services</p>
         </div>
       </div>
   </aside> 
+    <aside class="slds-form-element slds-m-bottom_xx-large">
+      <div class="slds-form-element__control">
+      <button class="slds-button slds-button_outline-brand slds-p-vertical_medium slds-p-horizontal_large slds-color__text_gray-1" id="service-read-more">
+        <span class="slds-text-body_small" style="font-size:22px;"><b>Read more</b></span></button>
+      </div>
+  </aside>
   <div class="slds-text-align_center"></div>
   </article>
 </section>
@@ -302,12 +339,22 @@ Our Patient Access Workflow Services</p>
 </div>
 </div>
 </article>
+</main>
+<!-- main < ends < -->
+<!-- footer > starts > -->
+{{- partialCached "footer" (dict "activeMenu" "Home" "context" $context) "home-page-key" -}} 
+<!-- footer < ends < -->
+<script>
+  $(document).ready(function () {
+    $("#about-read-more").on("click", function () {
+      window.location.href = "/about";
+    });
 
-  </main>
-  <!-- main < ends < -->
- <!-- footer > starts > -->
- {{- partialCached "footer" (dict "activeMenu" "Home" "context" $context) "home-page-key" -}} 
- <!-- footer < ends < -->
+    $("#service-read-more").on("click", function () {
+      window.location.href = "/service";
+    });
+  });
+</script>
 </section> 
 
 </body>
