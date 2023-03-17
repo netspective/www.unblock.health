@@ -44,9 +44,9 @@
       <h1 style="font-size: 48px; line-height:56px; font-weight: 700!important;">Unblock Health replaces the status quo and gets the job done</h1>
       <p style="font-size: 23px; line-height:34px;">Unblock Health provides a suite of digital tools that transform chaos and friction associated with individual access into simplicity.</p>
       <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_medium">
-        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12"><button class="slds-button slds-button_stretch slds-button_brand slds-p-around_medium slds-color__text_gray-1 slds-m-bottom_small">
+        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12"><button class="slds-button slds-button_stretch slds-button_brand slds-p-around_medium slds-color__text_gray-1 slds-m-bottom_small" id="register-patient-advocate">
           <span class="slds-text-heading_medium"><b>Register for an Invitation as a Patient Advocate</b></span></button></div>
-        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12"><button class="slds-button slds-button_stretch slds-button_outline-brand slds-p-around_medium slds-m-bottom_small">
+        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12"><button class="slds-button slds-button_stretch slds-button_outline-brand slds-p-around_medium slds-m-bottom_small" id="register-hospital-him">
           <span class="slds-text-heading_medium"><b>Register for an Invitation as a Hospital HIM</b></span></button></div>
       </div>
     </aside>
@@ -351,6 +351,14 @@
 
     $("#service-read-more").on("click", function () {
       window.location.href = "/service";
+    });
+
+    $("#register-hospital-him").on("click", function () {
+      window.location.href = "/register";
+    });
+
+    $("#register-patient-advocate").on("click", function () {
+      window.location.href = "/register";
     });
   });
 </script>
