@@ -2,10 +2,10 @@
 title: "Preconference Events    "
 cleanUrl: "http://www.empathyandinnovation.com/cleveland/2020/preconference-events"
 sourceBaseUrl: "www.empathyandinnovation.com"
-date: 2020-03-18
-eventdate: 2020-03-18
+date: 2023-03-25
+eventdate: 2023-03-25
 publishdate: 2019-12-20T19:58:52Z
-enddate: 2020-03-20
+enddate: 2023-03-25
 location: "Cleveland, OH"
 layout: "event"
 sub: "events"

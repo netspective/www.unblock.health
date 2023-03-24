@@ -6,6 +6,7 @@ date: 2020-04-20
 eventdate: 2020-04-20
 publishdate: 2019-11-22T10:10:07Z
 enddate: 2020-04-20
+eventcancelled: "true"
 location: "Online"
 layout: "event"
 sub: "events"

@@ -2,10 +2,10 @@
 title: "2020 Health Datapalooza"
 cleanUrl: "https://www.academyhealth.org/events/site/2020-health-datapalooza"
 sourceBaseUrl: "www.academyhealth.org"
-date: 2022-08-20
-eventdate: 2022-08-20
-publishdate: 2019-12-20T19:55:32Z
-enddate: 2022-08-20
+date: 2023-03-23
+eventdate: 2023-03-23
+publishdate: 2023-03-23T19:55:32Z
+enddate: 2023-03-24
 location: "Marriott Marquis, Washington, D.C."
 layout: "event"
 sub: "events"
