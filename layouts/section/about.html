@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Unblock Health</title>
-    <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.14.2/styles/salesforce-lightning-design-system.min.css" integrity="sha512-v9eTZELqSZcRlIRltjIbpM55zkTQ9azkDAjI0IByyjHLWty1U2+CSPtnNxGpC3FFkpsKwAOfciCv4PWhW/pQGw==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
-</head>
-<body>
-<section>
-  {{ $context := . }}
-  {{- partialCached "head" (dict "activeMenu" "About" "context" $context ) "about-page-key" -}}  
+{{ partial "header.html" . }}
 
-<!-- main starts > -->
+{{ $context := . }}
+{{- partialCached "head" (dict "activeMenu" "About" "context" $context ) "about-page-key" -}}  
+  
 <main>
 <section>   
   <div class="slds-container_fluid slds-container_center">
@@ -180,9 +167,5 @@
 </main>
 <!-- main < ends < -->
  <!-- footer > starts > -->
- {{- partialCached "footer" (dict "activeMenu" "About" "context" $context) "about-page-key" -}} 
+ {{- partialCached "footer-new" (dict "activeMenu" "About" "context" $context) "about-page-key" -}} 
  <!-- footer < ends < -->
-</section> 
-
-</body>
-</html>

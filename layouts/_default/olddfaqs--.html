@@ -1,0 +1,20 @@
+{{ partial "header.html" . }}
+
+{{ $context := . }}
+{{- partialCached "head" (dict "activeMenu" "About" "context" $context ) "about-page-key" -}}  
+  
+<!-- main starts > -->
+<main>
+  <section class="slds-color__background_gray-1 slds-p-vertical_x-large">  
+  <div class="slds-container_large slds-container_center slds-p-horizontal_small slds-p-vertical_medium slds-p-top_none">
+    <h1 style="font-size: 40px; line-height: 50px;font-weight: 700;">FAQ</h1>
+    <article>
+      {{.Content | safeHTML}} 
+    </article>
+  </div>
+</section>
+</main>
+<!-- main < ends < -->
+<!-- footer > starts > -->
+{{- partialCached "footer-new" (dict "activeMenu" "FAQs" "context" $context) "faqs" -}} 
+<!-- footer < ends < -->

@@ -117,7 +117,11 @@ h6 {font-size: 14px; line-height: 20px;font-weight: 600;}
 .slds-text-link:active {
     color: #2a416a;
 }
-
+.error{
+    color: #c23934 !important;
+    margin-left: 0;
+    text-align: left;
+}
 main {min-height: calc(55vh);}
 /* /Normalize styles <---< */
 

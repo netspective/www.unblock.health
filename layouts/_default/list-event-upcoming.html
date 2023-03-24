@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Unblock Health</title>
-    <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">    
-    <link rel="stylesheet preload" as="style"  href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.14.2/styles/salesforce-lightning-design-system.min.css" integrity="sha512-v9eTZELqSZcRlIRltjIbpM55zkTQ9azkDAjI0IByyjHLWty1U2+CSPtnNxGpC3FFkpsKwAOfciCv4PWhW/pQGw==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
-</head>
-<body>
-<section>
+{{ partial "header.html" . }}
 <article>  
   <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
   <!-- top > starts > -->
@@ -51,15 +38,17 @@
       </li><li class="slds-tabs_default__item" title="Canceled Events">
         <a class="slds-tabs_default__link slds-text-link" href="/events/cancelled" id="canceled-event-tab"><b>Cancelled Events</b></a>
         </li>
-      </ul>
-        {{-  $postCount := len (where (where .Pages.ByDate "Params.enddate" "ge" (now.Format "2006-01-02")) "Params.eventcancelled" "ne" "true")  -}} 
-        {{ $paginator := .Paginate (where (where .Pages.ByDate "Params.enddate" "ge" (now.Format "2006-01-02")) "Params.eventcancelled" "ne" "true") }}                
-        {{/*  {{-  $paginator := .Paginate (where (where (where (.Site.Pages.ByParam "eventdate") "Section" "in" (slice "upcoming") )  "Params.enddate" "ge" (now.Format "2006-01-02")) "Params.openprojectcustomfields.eventcancelled" "ne" "t") -}}  */}}
-        {{-  range $paginator.Pages  -}}
-        {{-  .Render "li-event"  -}}
-        {{-  end  -}}
+      </ul> 
+      {{ $paginator := .Paginate (where (where .Pages.ByDate "Params.enddate" "ge" (now.Format "2006-01-02")) "Params.eventcancelled" "ne" "true") }}                
+      {{ if $paginator.Pages }}
+        {{ range $paginator.Pages }}
+          {{ .Render "li-event" }}
+        {{ end }}
+      {{ else }}
+        <div class="no-events-found">No Events Found</div>
+      {{ end }} 
 
-        <div class="slds-pagination git-buttons-row slds-p-top_x-large slds-p-bottom_x-small slds-m-bottom_large slds-text-align_center slds-align_absolute-center slds-hide"><span class="slds-m-right_small slds-m-left_small">{{ $postCount }} items</span>
+        <div class="slds-pagination git-buttons-row slds-p-top_x-large slds-p-bottom_x-small slds-m-bottom_large slds-text-align_center slds-align_absolute-center slds-hide">
           {{ template "_internal/pagination.html" . }}
         </div>
   </div>
@@ -67,9 +56,6 @@
 </main>
 <!-- main < ends < -->
 <!-- footer > starts > -->
-{{- partialCached "footer" (dict "activeMenu" "Events" "context" $context ) "events-page-key" -}} 
+{{- partialCached "footer-new" (dict "activeMenu" "Events" "context" $context ) "events-page-key" -}} 
 <!-- footer < ends < --> 
 <script src="/js/event-date.js"></script> 
-</section>
-</body>
-</html>

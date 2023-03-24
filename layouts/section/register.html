@@ -1,72 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Unblock Health</title>
-    <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">    
-    <link rel="stylesheet preload" as="style"  href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.14.2/styles/salesforce-lightning-design-system.min.css" integrity="sha512-v9eTZELqSZcRlIRltjIbpM55zkTQ9azkDAjI0IByyjHLWty1U2+CSPtnNxGpC3FFkpsKwAOfciCv4PWhW/pQGw==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/styles/salesforce-lightning-custom.css">
-</head>
-<body>
-<section>
-<article>  
-  <header class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
-  <!-- top > starts > --> 
-  {{ $context := . }}
-  {{- partialCached "head" (dict "activeMenu" "Register" "context" $context ) "register-page-key" -}}  
-  <!-- top < ends < -->  
-  </header>
-</article>  
+{{ partial "header.html" . }}
 
+{{ $context := . }}
+{{- partialCached "head" (dict "activeMenu" "Register" "context" $context ) "register-page-key" -}}  
+  
 <!-- main starts > -->
 <main>
 <section class="slds-color__background_gray-1 slds-p-vertical_x-large">   
   <div class="slds-container_x-large slds-container_center slds-p-left_small slds-p-right_small">
     <h1 class="slds-text-align_center" style="font-size: 40px; line-height: 50px;font-weight: 700;">Register</h1>
-
+{{ if .Site.Params.register.enable }}
     <article class="slds-container_medium slds-container_center slds-p-left_small slds-p-right_small slds-p-vertical_x-large slds-text-align_center">
-      <h3 style="font-size:24px; line-height:34px;">Become an Unblock Health early adopter and pioneer</h3>
-      <p>It's time to Unblock Health! Register to request your pre-launch, early access invitation today!</p>
+	  {{ with .Site.Params.register.title }}
+		  <h3 style="font-size:24px; line-height:34px;">{{ . }}</h3>
+	  {{ end }}
+	  {{ with .Site.Params.register.subtitle }}
+		<p>{{ . }}</p>
+	  {{ end }}
       <aside>
+	  <form method="POST" id="quickcontact">
         <div class="slds-form-element slds-text-align_left slds-m-top_large">
             <div class="slds-form-element__control slds-m-bottom_medium">
-                <input type="text" id="form-element-02" placeholder="First Name*" class="slds-input slds-p-vertical_x-small">
+                <input type="text" placeholder="Name*" class="slds-input slds-p-vertical_x-small" name="Name" id="name" required>
+              
+               {{/*  <div class="slds-form-element__help" id="form-error-01">This field is required.</div>  */}}
               </div>
               <div class="slds-form-element__control slds-m-bottom_medium">
-                <input type="text" id="form-element-03" placeholder="Last Name*" class="slds-input slds-p-vertical_x-small">
-                {{/*  <div class="slds-form-element__help" id="form-error-01">This field is required.</div>  */}}
-              </div>
-              <div class="slds-form-element__control slds-m-bottom_medium">
-            <input type="email" id="form-element-02" placeholder="Email Address*" class="slds-input slds-p-vertical_x-small">
+            <input type="email" placeholder="Email Address*" class="slds-input slds-p-vertical_x-small" name="Email" id="email" required>
           </div>
             <div class="slds-form-element__control slds-m-bottom_medium">
             <div class="slds-select_container">
-            <select class="slds-select slds-p-vertical_x-small" id="select-01" style="height: 48px;">
+            <select class="slds-select slds-p-vertical_x-small" style="height: 48px;" name="Patient Information" id="patientoption" required>
             <option value="">Please Select Option*</option>
-            <option>Patient Advocate</option>
-            <option>Hospital HIM</option>
+            <option value="PA">Patient Advocate</option>
+            <option value="HIM">Hospital HIM</option>
             </select>
             </div>
+            <input type="hidden" name="_subject" value="[UnBlock Health] - Contact Form Submission" />
+            <input type="hidden" name="_subject" value="[UnBlock Health] - Contact Form Submission" />
             </div>
 
-          <button class="slds-button slds-button_stretch slds-button_brand slds-p-around_medium slds-color__text_gray-1 slds-m-bottom_small">
+          <button class="slds-button slds-button_stretch slds-button_brand slds-p-around_medium slds-color__text_gray-1 slds-m-bottom_small" id="contact-submit-live">
             <span class="slds-text-heading_medium" style="font-size: 24px;text-transform:uppercase;"><b>Register</b></span></button>
         </div>
+	 </form>
+   <div id="success" style="display:none;">
+
+   </div>
+   <div id="error" style="display:none;">
+
+   </div>
       </aside>
 
     </article>
+{{ end }}
 
   </div>
 </section>
 </main>
 <!-- main < ends < -->
 <!-- footer > starts > -->
-{{- partialCached "footer" (dict "activeMenu" "Register" "context" $context) "register" -}} 
+{{- partialCached "footer-new" (dict "activeMenu" "Register" "context" $context) "register" -}} 
 <!-- footer < ends < -->
-</section> 
-
-</body>
-</html>
+<script>
+  $(document).ready(function(){
+    // Get the selected value from the query parameter
+    var selectedValue = getUrlParameter('patient_option');
+    
+    // Set the dropdown value to the selected value
+    $('#patientoption').val(selectedValue);
+  });
+  
+  // Helper function to get URL parameters
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
+</script>
+						
+						
+						
+						
