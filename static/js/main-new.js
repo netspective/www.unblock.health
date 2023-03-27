@@ -256,8 +256,8 @@ $('#contact-submit-live').prop('disabled', 'disabled');
   
       var jform = new FormData();
       jform.append('data',$('#imageInput').get(0).files[0]); // Here's the important bit
-       console.log($('#imageInput').get(0).files[0]);
-       return false;
+       //console.log($('#imageInput').get(0).files[0]);
+       //return false;
       $.ajax({
           url: 'https://test.admin.web.unblock.health/directus/files',
           type: 'POST',
@@ -315,8 +315,8 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
   function sendm(token,to,First_Name,Last_Name,story_title,story_description,full_url){
     var subject = 'Unblock Health - Story Submitted';
-    var to = ["mary.john@netspective.org","enlighteningresults@gmail.com"];
-    //var to = ["vishnu.prasad@citrusinformatics.com"];
+    //var to = ["mary.john@netspective.org","enlighteningresults@gmail.com"];
+    var to = ["rejina.kp@citrusinformatics.com"];
     
     var body = "";
     body += " <div  style='text-align: left;' trbidi='on'>";
