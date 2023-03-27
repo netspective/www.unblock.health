@@ -304,7 +304,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
           },
           error: function(jqXHR,status,error){
               // Hopefully we should never reach here
-              var $success = $('#patient_impact_story_error'); // get the reference of the div
+              var $success = $('#patient-story_error'); // get the reference of the div
                 $success.show().html('Sorry, The story was not able to sent, please check all fields are provided.');
                 $('#patient-story-form-submit').attr('disabled',false);
           }
@@ -315,8 +315,8 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
   function sendm(token,to,First_Name,Last_Name,story_title,story_description,full_url){
     var subject = 'Unblock Health - Story Submitted';
-    //var to = ["mary.john@netspective.org","enlighteningresults@gmail.com"];
-    var to = ["rejina.kp@citrusinformatics.com"];
+    var to = ["mary.john@netspective.org","enlighteningresults@gmail.com"];
+    //var to = ["rejina.kp@citrusinformatics.com"];
     
     var body = "";
     body += " <div  style='text-align: left;' trbidi='on'>";
