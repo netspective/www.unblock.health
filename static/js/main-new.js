@@ -47,12 +47,12 @@ $('#contact-submit-live').click(function (e) {
 
   var form = new FormData();
   form.append("grant_type", "client_credentials");
-  form.append("client_id", "93d80a68-5ad0-878d-a787-5da44425070f");
-  form.append("client_secret", "_S9UX^KZ&&t9W(aH");
+  form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
+  form.append("client_secret", "ioDlA7#09yyM");
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://crm.unblock.health/Api/access_token",
+    "url": "https://devl-crm.unblock.health/Api/access_token",
     "method": "POST",
     "headers": {
       "Accept": "application/vnd.api+json"
@@ -68,7 +68,7 @@ $('#contact-submit-live').click(function (e) {
     var obj = $.parseJSON(response);
     var access_token = obj.access_token;
     var settings = {
-      "url": "https://crm.unblock.health/Api/V8/module",
+      "url": "https://devl-crm.unblock.health/Api/V8/module",
       "method": "POST",
       "headers": {
         "Accept": "application/vnd.api+json",
@@ -85,7 +85,7 @@ $('#contact-submit-live').click(function (e) {
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://crm.unblock.health/Api/V8/module/Accounts/aba27ce2-d758-bdeb-adef-5da4294bf9e8/relationships",
+        "url": "https://devl-crm.unblock.health/Api/V8/module/Accounts/c548fc60-389f-8f5b-5ecb-64cce0924678/relationships",
         "method": "POST",
         "headers": {
           "Accept": "application/vnd.api+json",
