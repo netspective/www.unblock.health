@@ -5,6 +5,23 @@ $(document).ready(function () {
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     )
   }
+  function getCurrentDateTime() {
+    var currentDate = new Date();
+
+    var month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    var day = String(currentDate.getDate()).padStart(2, '0');
+    var year = currentDate.getFullYear();
+
+    var hours = String(currentDate.getHours()).padStart(2, '0');
+    var minutes = String(currentDate.getMinutes()).padStart(2, '0');
+    var seconds = String(currentDate.getSeconds()).padStart(2, '0');
+
+    var formattedDateTime = `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
+    return formattedDateTime;
+}
+
+var currentDateTime = getCurrentDateTime();
+
   var uid = uuidv4();
 $('#contact-submit-live').click(function (e) {
   e.preventDefault();  
@@ -44,69 +61,43 @@ $('#contact-submit-live').click(function (e) {
   else {
     $('#patientalert').css('display', 'none');
   }
-
-  var form = new FormData();
-  form.append("grant_type", "client_credentials");
-  form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
-  form.append("client_secret", "ioDlA7#09yyM");
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://devl-crm.unblock.health/Api/access_token",
-    "method": "POST",
-    "headers": {
-      "Accept": "application/vnd.api+json"
-    },
-    "processData": false,
-    "contentType": false,
-    "mimeType": "multipart/form-data",
-    "data": form
+  if(patientdetails == 'PA'){
+    var patientdetailsvalue = 'PPA'
   }
+  var concatenatedValues = first_name + "|" + email + "|" + patientdetailsvalue;
 
-  $.ajax(settings).done(function (response) {
+  var encodedValues = btoa(concatenatedValues);
+var payload = {
+  "name": "ubh-notify-user-registration",
+  "to": {
+      "subscriberId": email,
+      "email": email,
+      "firstName": first_name,
+      "lastName": ""
+  },
+  "payload": {
+      "invite_link": encodedValues,
+      "registration_type": patientdetailsvalue,
+      "registration_datetime": currentDateTime
+  }
+};
+  var settings = {
+    "url": "https://api.novu.infra.experimental.medigy.com/v1/events/trigger",
+    "method": "POST",
+    "timeout": 0,
+    "headers": {
+      "Authorization": "ApiKey 173122ce8b63e1199b61fb7ced626f8a",
+      "Content-Type": "application/json"
+    },
+    "data": JSON.stringify(payload),
+};
+// Make the API call
+$.ajax(settings).done(function(response) {
+  console.log("API call successful:", response);
+}).fail(function(error) {
+  console.error("API call error:", error);
+});
 
-    var obj = $.parseJSON(response);
-    var access_token = obj.access_token;
-    var settings = {
-      "url": "https://devl-crm.unblock.health/Api/V8/module",
-      "method": "POST",
-      "headers": {
-        "Accept": "application/vnd.api+json",
-        "Authorization": "Bearer " + access_token + "",
-        "Content-Type": "application/json"
-      },
-      "processData": false,
-      "data": "{\r\n  \"data\": {\r\n    \"type\": \"Contacts\",\r\n    \"id\": \"" + uid + "\",\r\n    \"attributes\": {\r\n     \"first_name\":\"" + first_name + "\",\r\n     \"email1\":\"" + email + "\"\r\n,\r\n     \"lead_source\":\"Web Site\"\r\n,\r\n     \"title\":\"" + patientdetails + "\"\r\n   }\r\n  }\r\n}\r\n"
-    }
-
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      var contactid = response.data.id;
-      var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://devl-crm.unblock.health/Api/V8/module/Accounts/c548fc60-389f-8f5b-5ecb-64cce0924678/relationships",
-        "method": "POST",
-        "headers": {
-          "Accept": "application/vnd.api+json",
-          "Authorization": "Bearer " + access_token + "",
-          "Content-Type": "application/json"
-        },
-        "processData": false,
-        "data": "{  \r\n   \"data\":{  \r\n         \"type\":\"Contacts\",\r\n         \"id\":\"" + contactid + "\"\r\n\t    \r\n      }\r\n}"
-      }
-
-      $.ajax(settings).done(function (response) {
-        console.log(response);
-        if (response.meta.message != "") {
-          $('#name').val('');
-          $('#email').val('');
-          var $success = $('#success'); // get the reference of the div
-          $success.show().html('We appreciate your registration with Unblock Health.');
-        }
-      });
-    });
-  });
 });
 
 $('#contact-submit-live').prop('disabled', 'disabled');
