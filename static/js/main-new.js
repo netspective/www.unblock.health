@@ -5,22 +5,27 @@ $(document).ready(function () {
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     )
   }
-  function getCurrentDateTime() {
-    var currentDate = new Date();
+  // Get the current date
+var currentDate = new Date();
 
-    var month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    var day = String(currentDate.getDate()).padStart(2, '0');
-    var year = currentDate.getFullYear();
+// Get components of the date
+var month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 to month since it's zero-based
+var day = currentDate.getDate().toString().padStart(2, '0');
+var year = currentDate.getFullYear();
 
-    var hours = String(currentDate.getHours()).padStart(2, '0');
-    var minutes = String(currentDate.getMinutes()).padStart(2, '0');
-    var seconds = String(currentDate.getSeconds()).padStart(2, '0');
+var hours = currentDate.getHours();
+var minutes = currentDate.getMinutes().toString().padStart(2, '0');
+var seconds = currentDate.getSeconds().toString().padStart(2, '0');
+var ampm = hours >= 12 ? 'PM' : 'AM';
+hours = hours % 12;
+hours = hours ? hours : 12; // Handle 12-hour format
 
-    var formattedDateTime = `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
-    return formattedDateTime;
-}
+// Construct the formatted date string
+var todayDate = month + '/' + day + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds + ' ' + ampm;
 
-var currentDateTime = getCurrentDateTime();
+// Display the formatted date
+// console.log(todayDate);
+
 
   var uid = uuidv4();
 $('#contact-submit-live').click(function (e) {
@@ -31,7 +36,7 @@ $('#contact-submit-live').click(function (e) {
   var patientdetails = $('#patientoption').val();
   var message = $('#message').val();
   var o = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-  console.log(" patientdetails -----------",first_name, email, subject, patientdetails);
+  //console.log(" patientdetails -----------",first_name, email, subject, patientdetails);
  
   if (first_name == '') {
     $('#namealert').css('display', 'block');
@@ -62,11 +67,16 @@ $('#contact-submit-live').click(function (e) {
     $('#patientalert').css('display', 'none');
   }
   if(patientdetails == 'PA'){
-    var patientdetailsvalue = 'PPA'
+    var patientdetailsvalue = 'PPA';
+  } else if(patientdetails == 'HIM'){
+    var patientdetailsvalue = 'HIM';
+  } else {
+    var patientdetailsvalue = '';
   }
   var concatenatedValues = first_name + "|" + email + "|" + patientdetailsvalue;
 
   var encodedValues = btoa(concatenatedValues);
+  var inviteurl = 'https://devl.co.medigy.com/sendInvite/token='+encodedValues;
 var payload = {
   "name": "ubh-notify-user-registration",
   "to": {
@@ -76,9 +86,9 @@ var payload = {
       "lastName": ""
   },
   "payload": {
-      "invite_link": encodedValues,
+      "invite_link": inviteurl,
       "registration_type": patientdetailsvalue,
-      "registration_datetime": currentDateTime
+      "registration_datetime": todayDate
   }
 };
   var settings = {
@@ -93,7 +103,69 @@ var payload = {
 };
 // Make the API call
 $.ajax(settings).done(function(response) {
-  console.log("API call successful:", response);
+  var form = new FormData();
+  form.append("grant_type", "client_credentials");
+  form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
+  form.append("client_secret", "ioDlA7#09yyM");
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://devl-crm.unblock.health/Api/access_token",
+    "method": "POST",
+    "headers": {
+      "Accept": "application/vnd.api+json"
+    },
+    "processData": false,
+    "contentType": false,
+    "mimeType": "multipart/form-data",
+    "data": form
+  }
+
+  $.ajax(settings).done(function (response) {
+
+    var obj = $.parseJSON(response);
+    var access_token = obj.access_token;
+    var settings = {
+      "url": "https://devl-crm.unblock.health/Api/V8/module",
+      "method": "POST",
+      "headers": {
+        "Accept": "application/vnd.api+json",
+        "Authorization": "Bearer " + access_token + "",
+        "Content-Type": "application/json"
+      },
+      "processData": false,
+      "data": "{\r\n  \"data\": {\r\n    \"type\": \"Contacts\",\r\n    \"id\": \"" + uid + "\",\r\n    \"attributes\": {\r\n     \"first_name\":\"" + first_name + "\",\r\n     \"email1\":\"" + email + "\"\r\n,\r\n     \"lead_source\":\"Web Site\"\r\n,\r\n     \"title\":\"" + patientdetails + "\"\r\n   }\r\n  }\r\n}\r\n"
+    }
+
+    $.ajax(settings).done(function (response) {
+      // console.log(response);
+      var contactid = response.data.id;
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://devl-crm.unblock.health/Api/V8/module/Accounts/c548fc60-389f-8f5b-5ecb-64cce0924678/relationships",
+        "method": "POST",
+        "headers": {
+          "Accept": "application/vnd.api+json",
+          "Authorization": "Bearer " + access_token + "",
+          "Content-Type": "application/json"
+        },
+        "processData": false,
+        "data": "{  \r\n   \"data\":{  \r\n         \"type\":\"Contacts\",\r\n         \"id\":\"" + contactid + "\"\r\n\t    \r\n      }\r\n}"
+      }
+
+      $.ajax(settings).done(function (response) {
+        // console.log(response);
+        if (response.meta.message != "") {
+          $('#name').val('');
+          $('#email').val('');
+          var $success = $('#success'); // get the reference of the div
+          $success.show().html('We appreciate your registration with Unblock Health.');
+        }
+      });
+    });
+  });
+  // console.log("API call successful:", response);
 }).fail(function(error) {
   console.error("API call error:", error);
 });
@@ -263,7 +335,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
             
           },
           success: function(data, status, jqXHR){
-            console.log(data);
+            // console.log(data);
             
             var photo = data.data.id;      
             var full_url =   data.data.data.full_url;      
@@ -346,7 +418,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
       "data": JSON.stringify({"to": to, "subject": subject , "body" :  body })
     }
     $.ajax(settings).done(function (response) {
-      console.log(response);
+      // console.log(response);
     });
   } 
 
@@ -378,7 +450,7 @@ $(".image-preview-input input:file").change(function (){
       $(".image-clear-btn").removeClass("slds-hide");
       $(".image-clear-btn").addClass("slds-show");
       $(".image-preview-filename").html(file.name);
-      console.log(file.name);            
+      // console.log(file.name);            
       img.attr('src', e.target.result);
       $(".myPopover").removeClass("slds-hide").append($(img)[0].outerHTML);
       //console.log($("#myPopover p").attr("data-content",$(img)[0].outerHTML));
