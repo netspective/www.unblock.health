@@ -73,6 +73,7 @@ $('#contact-submit-live').click(function (e) {
   } else {
     var patientdetailsvalue = '';
   }
+  $('.loader-form').show();
   var concatenatedValues = first_name + "|" + email + "|" + patientdetailsvalue;
 
   var encodedValues = btoa(concatenatedValues);
@@ -160,6 +161,7 @@ $.ajax(settings).done(function(response) {
         if (response.meta.message != "") {
           $('#name').val('');
           $('#email').val('');
+          $('.loader-form').hide();
           var $success = $('#success'); // get the reference of the div
           $success.show().html('We appreciate your registration with Unblock Health.');
         }
