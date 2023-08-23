@@ -76,8 +76,9 @@ $('#contact-submit-live').click(function (e) {
   var concatenatedValues = first_name + "|" + email + "|" + patientdetailsvalue;
 
   var encodedValues = btoa(concatenatedValues);
-  var inviteurl = 'https://devl.co.medigy.com/sendInvite/token='+encodedValues;
-var payload = {
+  var NovuBaseURL = $('#_novbaseurl').val();
+  var inviteurl = NovuBaseURL+'token='+encodedValues;
+var registerFormData = {
   "name": "ubh-notify-user-registration",
   "to": {
       "subscriberId": email,
@@ -99,7 +100,7 @@ var payload = {
       "Authorization": "ApiKey 173122ce8b63e1199b61fb7ced626f8a",
       "Content-Type": "application/json"
     },
-    "data": JSON.stringify(payload),
+    "data": JSON.stringify(registerFormData),
 };
 // Make the API call
 $.ajax(settings).done(function(response) {
