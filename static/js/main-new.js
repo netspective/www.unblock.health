@@ -78,11 +78,12 @@ $('#contact-submit-live').click(function (e) {
 
   var encodedValues = btoa(concatenatedValues);
   var NovuBaseURL = $('#_novbaseurl').val();
+  var regformToEmail = $('#_regformsupportemail').val();
   var inviteurl = NovuBaseURL+'token='+encodedValues;
 var registerFormData = {
   "name": "ubh-notify-user-registration",
   "to": {
-      "subscriberId": email,
+      "subscriberId": regformToEmail,
       "email": email,
       "firstName": first_name,
       "lastName": ""
