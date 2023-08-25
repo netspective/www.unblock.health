@@ -80,20 +80,21 @@ $('#contact-submit-live').click(function (e) {
   var NovuBaseURL = $('#_novbaseurl').val();
   var regformToEmail = $('#_regformsupportemail').val();
   var inviteurl = NovuBaseURL+'token='+encodedValues;
-var registerFormData = {
-  "name": "ubh-notify-user-registration",
-  "to": {
-      "subscriberId": regformToEmail,
-      "email": email,
-      "firstName": first_name,
-      "lastName": ""
-  },
-  "payload": {
-      "invite_link": inviteurl,
-      "registration_type": patientdetailsvalue,
-      "registration_datetime": todayDate
-  }
-};
+  var registerFormData = {
+    "name": "ubh-notify-user-registration",
+    "to": {
+        "subscriberId": regformToEmail,
+        "email": regformToEmail, 
+        "firstName": first_name,
+        "lastName": ""
+    },
+    "payload": {
+        "requestor_email":email,
+        "invite_link": inviteurl,
+        "registration_type": patientdetailsvalue,
+        "registration_datetime": todayDate
+    }
+  };
   var settings = {
     "url": "https://api.novu.infra.experimental.medigy.com/v1/events/trigger",
     "method": "POST",
