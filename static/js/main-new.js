@@ -5,23 +5,31 @@ $(document).ready(function () {
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     )
   }
-  // Get the current date
+ // Get the current date and time
 var currentDate = new Date();
 
-// Get components of the date
-var month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 to month since it's zero-based
-var day = currentDate.getDate().toString().padStart(2, '0');
+// Define the days and months for formatting
+var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+// Get the components of the date and time
+var day = days[currentDate.getDay()];
+var month = months[currentDate.getMonth()];
+var date = currentDate.getDate();
 var year = currentDate.getFullYear();
+var hours = currentDate.getUTCHours() - 5; // Convert to EST (-5 hours)
+var minutes = currentDate.getUTCMinutes();
+var seconds = currentDate.getUTCSeconds();
+var timezone = 'GMT-0500 (Eastern Standard Time)'; // EST timezone
 
-var hours = currentDate.getHours();
-var minutes = currentDate.getMinutes().toString().padStart(2, '0');
-var seconds = currentDate.getSeconds().toString().padStart(2, '0');
-var ampm = hours >= 12 ? 'PM' : 'AM';
-hours = hours % 12;
-hours = hours ? hours : 12; // Handle 12-hour format
+// Adjust hours to handle negative values (before midnight)
+if (hours < 0) {
+  hours = 24 + hours;
+  date -= 1;
+}
 
-// Construct the formatted date string
-var todayDate = month + '/' + day + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+// Construct the formatted date and time string
+var todayDate = day + ' ' + month + ' ' + date + ' ' + year + ' ' + hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0') + ' ' + timezone;
 
 // Display the formatted date
 // console.log(todayDate);
