@@ -5,36 +5,20 @@ $(document).ready(function () {
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     )
   }
- // Get the current date and time
-var currentDate = new Date();
-
-// Define the days and months for formatting
-var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-// Get the components of the date and time
-var day = days[currentDate.getDay()];
-var month = months[currentDate.getMonth()];
-var date = currentDate.getDate();
-var year = currentDate.getFullYear();
-var hours = currentDate.getUTCHours() - 5; // Convert to EST (-5 hours)
-var minutes = currentDate.getUTCMinutes();
-var seconds = currentDate.getUTCSeconds();
-var timezone = 'GMT-0500 (Eastern Standard Time)'; // EST timezone
-
-// Adjust hours to handle negative values (before midnight)
-if (hours < 0) {
-  hours = 24 + hours;
-  date -= 1;
-}
-
-// Construct the formatted date and time string
-var todayDate = day + ' ' + month + ' ' + date + ' ' + year + ' ' + hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0') + ' ' + timezone;
-
-// Display the formatted date
-// console.log(todayDate);
-
-
+  const date = new Date();
+  const todayDate = date.toLocaleString('en-US', {
+    timeZone: 'America/New_York',
+    weekday:"short",
+    year:"numeric",
+    month:"long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    timeZoneName: "long",
+    
+  });
+  
   var uid = uuidv4();
 $('#contact-submit-live').click(function (e) {
   e.preventDefault();  
