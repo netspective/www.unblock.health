@@ -1,0 +1,56 @@
+name: CI/CD Workflow
+on:
+  push:
+    branches:
+      - next
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: next 
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '10'
+
+      - name: Install SSH Client and Hugo
+        run: |
+          sudo apt update
+          sudo apt install openssh-client -y
+          wget https://github.com/gohugoio/hugo/releases/download/v0.58.3/hugo_0.58.3_Linux-64bit.tar.gz
+          tar -zxvf hugo_0.58.3_Linux-64bit.tar.gz
+          sudo mv hugo /usr/local/bin/
+
+      - name: Set up SSH agent
+        run: |
+          eval $(ssh-agent -s)
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo -e "${{ secrets.DEVELOPMENT_SSH_PRIVATE_KEY }}" >> ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
+      - name: Node and Hugo versions
+        run: |
+          node --version
+          hugo version
+
+      - name: Install dependencies and build
+        run: |
+          npm install
+          node create_md_files/createMdFile.js && hugo
+
+      - name: Archive build artifacts
+        run: |
+          tar -czvf  devl-unblock.health_dist.tar.gz public
+
+      - name: Copy build artifacts to the production server
+        run: |
+           scp -P522 -o StrictHostKeyChecking=no devl-unblock.health_dist.tar.gz "${{ secrets.DEVELOPMENT_USER }}@${{ secrets.DEVELOPMENT_SERVER_IP }}:"
+           ssh -p522 -o StrictHostKeyChecking=no -t ${{ secrets.DEVELOPMENT_USER }}@${{ secrets.DEVELOPMENT_SERVER_IP }} "bash -i update-devl-unblock-health-com.sh"
+	
