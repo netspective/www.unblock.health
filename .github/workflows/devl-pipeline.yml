@@ -53,4 +53,3 @@ jobs:
         run: |
            scp -P522 -o StrictHostKeyChecking=no devl-unblock.health_dist.tar.gz "${{ secrets.DEVELOPMENT_USER }}@${{ secrets.DEVELOPMENT_SERVER_IP }}:"
            ssh -p522 -o StrictHostKeyChecking=no -t ${{ secrets.DEVELOPMENT_USER }}@${{ secrets.DEVELOPMENT_SERVER_IP }} "bash -i update-devl-unblock-health-com.sh"
-	
