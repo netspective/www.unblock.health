@@ -65,6 +65,8 @@ $('#contact-submit-live').click(function (e) {
   } else {
     var patientdetailsvalue = '';
   }
+  $('#contact-submit-live').prop('disabled', 'disabled');
+  $('#contact-submit-live').addClass('is-disabled');
   $('.loader-form').show();
   var concatenatedValues = first_name + "|" + email + "|" + patientdetailsvalue;
 
