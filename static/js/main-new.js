@@ -5,6 +5,7 @@ $(document).ready(function () {
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     )
   }
+  var uid = uuidv4();
   const date = new Date();
   const todayDate = date.toLocaleString('en-US', {
     timeZone: 'America/New_York',
@@ -19,9 +20,9 @@ $(document).ready(function () {
     
   });
   
-  var uid = uuidv4();
+  
 $('#contact-submit-live').click(function (e) {
-  e.preventDefault();  
+  e.preventDefault();
   var first_name = $('#name').val();
   var email = $('#email').val();
   var subject = $('#subject').val();
@@ -74,7 +75,8 @@ $('#contact-submit-live').click(function (e) {
   var NovuBaseURL = $('#_novbaseurl').val();
   var regformToEmail = $('#_regformsupportemail').val();
   var inviteurl = NovuBaseURL+'token='+encodedValues;
-  var registerFormData = {
+  
+ var registerFormData = {
     "name": "ubh-notify-user-registration",
     "to": {
         "subscriberId": regformToEmail,
@@ -160,6 +162,8 @@ $.ajax(settings).done(function(response) {
           $('.loader-form').hide();
           var $success = $('#success'); // get the reference of the div
           $success.show().html('We appreciate your registration with Unblock Health.');
+          setInterval('location.reload()', 800);
+          $success.show().html('');
         }
       });
     });
