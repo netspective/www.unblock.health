@@ -5,7 +5,7 @@ $(document).ready(function () {
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     )
   }
-  var uid = uuidv4();
+  
   const date = new Date();
   const todayDate = date.toLocaleString('en-US', {
     timeZone: 'America/New_York',
@@ -23,6 +23,9 @@ $(document).ready(function () {
   
 $('#contact-submit-live').click(function (e) {
   e.preventDefault();
+  $success.show().html('');
+  var uid = 0;
+  uid = uuidv4();
   var first_name = $('#name').val();
   var email = $('#email').val();
   var subject = $('#subject').val();
@@ -162,8 +165,8 @@ $.ajax(settings).done(function(response) {
           $('.loader-form').hide();
           var $success = $('#success'); // get the reference of the div
           $success.show().html('We appreciate your registration with Unblock Health.');
-          setInterval('location.reload()', 800);
-          $success.show().html('');
+          //setInterval('location.reload()', 800);
+          
         }
       });
     });
@@ -187,6 +190,8 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
   $('#contact-submit').click(function (e) {
     e.preventDefault();
+    var uid = 0;
+    uid = uuidv4();
     var first_name = $('#quickname').val();
     var email = $('#quickemail').val();
     var subject = $('#quicksubject').val();
@@ -280,6 +285,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
             $("#contactform").trigger("reset");
             var $success = $('#successfooter'); // get the reference of the div
             $success.show().html('Your Message was sent successfully');
+            
           }
         });
       });
