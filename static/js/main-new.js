@@ -23,6 +23,7 @@ $(document).ready(function () {
   
 $('#contact-submit-live').click(function (e) {
   e.preventDefault();
+  var $success = $('#success');
   $success.show().html('');
   var uid = 0;
   uid = uuidv4();
