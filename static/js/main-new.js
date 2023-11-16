@@ -6,7 +6,7 @@ $(document).ready(function () {
     )
   }
   
-  const date = new Date();
+  /*const date = new Date();
   const todayDate = date.toLocaleString('en-US', {
     timeZone: 'America/New_York',
     weekday:"short",
@@ -18,10 +18,45 @@ $(document).ready(function () {
     second: "numeric",
     timeZoneName: "long",
     
-  });
+  });*/
+
+  
+
   
   
 $('#contact-submit-live').click(function (e) {
+  // Get server time using an HTTP request
+
+// Function to convert a date to EST based on server timezone
+function convertToEST(serverDate) {
+  // Assuming serverDate is a valid Date object
+
+  // Get the offset in minutes
+  const serverOffset = serverDate.getTimezoneOffset();
+
+  // Calculate the offset for Eastern Standard Time (EST) in minutes
+  const estOffset = -330; // EST is UTC-5, so the offset is -5 hours * 60 minutes/hour
+
+  // Calculate the total offset in minutes
+  const totalOffset = serverOffset - estOffset;
+
+  // Create a new Date object with the adjusted time
+  const estDate = new Date(serverDate.getTime() + totalOffset * 60000);
+
+  // Format the date as a string in the "en-US" locale and "America/New_York" time zone
+  const estString = estDate.toLocaleString('en-US', { timeZone: 'America/New_York' });
+
+  return estString;
+}
+
+// Example usage:
+const serverDate = new Date(); // Replace this with your server date
+const estDateString = convertToEST(serverDate);
+console.log('Server Date:', serverDate.toLocaleString());
+console.log('EST Date:', estDateString);
+
+
+
   e.preventDefault();
   var $success = $('#success');
   $success.show().html('');
@@ -79,7 +114,7 @@ $('#contact-submit-live').click(function (e) {
   var NovuBaseURL = $('#_novbaseurl').val();
   var regformToEmail = $('#_regformsupportemail').val();
   var inviteurl = NovuBaseURL+'token='+encodedValues;
-  
+  return false;
  var registerFormData = {
     "name": "ubh-notify-user-registration",
     "to": {
