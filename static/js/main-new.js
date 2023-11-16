@@ -6,7 +6,7 @@ $(document).ready(function () {
     )
   }
   
-  /*const date = new Date();
+ const date = new Date();
   const todayDate = date.toLocaleString('en-US', {
     timeZone: 'America/New_York',
     weekday:"short",
@@ -18,7 +18,7 @@ $(document).ready(function () {
     second: "numeric",
     timeZoneName: "long",
     
-  });*/
+  });
 
   
 
@@ -28,7 +28,7 @@ $('#contact-submit-live').click(function (e) {
   // Get server time using an HTTP request
 
 // Function to convert a date to EST based on server timezone
-function convertToEST(serverDate) {
+/*function convertToEST(serverDate) {
   // Assuming serverDate is a valid Date object
 
   // Get the offset in minutes
@@ -52,8 +52,9 @@ function convertToEST(serverDate) {
 // Example usage:
 const serverDate = new Date(); // Replace this with your server date
 const estDateString = convertToEST(serverDate);
-console.log('Server Date:', serverDate.toLocaleString());
-console.log('EST Date:', estDateString);
+const estDateformat =  estDateString  +   'Eastern Time: ';
+//console.log('Server Date:', serverDate.toLocaleString());
+console.log('EST Date:', estDateformat);*/
 
 
 
@@ -114,7 +115,6 @@ console.log('EST Date:', estDateString);
   var NovuBaseURL = $('#_novbaseurl').val();
   var regformToEmail = $('#_regformsupportemail').val();
   var inviteurl = NovuBaseURL+'token='+encodedValues;
-  return false;
  var registerFormData = {
     "name": "ubh-notify-user-registration",
     "to": {
