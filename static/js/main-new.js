@@ -103,19 +103,21 @@ console.log('EST Date:', estDateformat);*/
     var patientdetailsvalue = 'PPA';
   } else if(patientdetails == 'HIM'){
     var patientdetailsvalue = 'HIM';
+  } else if(patientdetails == 'PAT'){
+    var patientdetailsvalue = 'PAT';
   } else {
     var patientdetailsvalue = '';
   }
   $('#contact-submit-live').prop('disabled', 'disabled');
   $('#contact-submit-live').addClass('is-disabled');
   $('.loader-form').show();
-  var concatenatedValues = first_name + "|" + email + "|" + patientdetailsvalue;
+  //var concatenatedValues = first_name + "|" + email + "|" + patientdetailsvalue;
 
-  var encodedValues = btoa(concatenatedValues);
-  var NovuBaseURL = $('#_novbaseurl').val();
-  var regformToEmail = $('#_regformsupportemail').val();
-  var inviteurl = NovuBaseURL+'token='+encodedValues;
- var registerFormData = {
+  //var encodedValues = btoa(concatenatedValues);
+  //var NovuBaseURL = $('#_novbaseurl').val();
+  //var regformToEmail = $('#_regformsupportemail').val();
+  //var inviteurl = NovuBaseURL+'token='+encodedValues;
+ /*var registerFormData = {
     "name": "ubh-notify-user-registration",
     "to": {
         "subscriberId": regformToEmail,
@@ -139,9 +141,23 @@ console.log('EST Date:', estDateformat);*/
       "Content-Type": "application/json"
     },
     "data": JSON.stringify(registerFormData),
+};*/
+var settings = {
+  "url": "https://ubh-dcp.infra.medigy.com/graphql",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "qu": "",
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    query: "mutation MyMutation {\r\n  notifyUserRegistrationV1(input: {email: \"" + email + "\", name: \"" + first_name + "\", userType: \"" + patientdetails + "\"}) {\r\n    requestApiResponse {\r\n      data\r\n      status {\r\n        code\r\n        message\r\n      }\r\n      success\r\n    }\r\n  }\r\n}",
+    variables: {}
+  })
 };
-// Make the API call
-$.ajax(settings).done(function(response) {
+
+
+$.ajax(settings).done(function (response) {
   var form = new FormData();
   form.append("grant_type", "client_credentials");
   form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
