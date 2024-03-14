@@ -235,7 +235,7 @@ unsafe                            = true
     
     [params.register]
         enable      = true
-        title       = "Join the movement. SIgn up for your Unblock Health account now!"
+        title       = "Join the movement. Sign up for your Unblock Health account now!"
         subtitle    = "It's time to Unblock Health! Register to request your early access invitation today!"
     [params.community]
         enable      = true
