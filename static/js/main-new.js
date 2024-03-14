@@ -143,7 +143,7 @@ console.log('EST Date:', estDateformat);*/
     "data": JSON.stringify(registerFormData),
 };*/
 var settings = {
-  "url": "https://ubh-dcp.infra.medigy.com/graphql",
+  "url": "https://prime.dcp.infra.experimental.unblock.health/graphql",
   "method": "POST",
   "timeout": 0,
   "headers": {
@@ -151,7 +151,7 @@ var settings = {
     "Content-Type": "application/json"
   },
   "data": JSON.stringify({
-    query: "mutation MyMutation {\r\n  notifyUserRegistrationV1(input: {name: \"" + first_name + "\",  userType: \"" + patientdetails + "\",  email: \"" + email + "\"}) {\r\n    requestApiResponse {\r\n      data\r\n      status {\r\n        code\r\n        message\r\n      }\r\n      success\r\n    }\r\n  }\r\n}",
+    query: "mutation MyMutation {\r\n  notifyUserRegistrationV1(input: {email: \"" + email + "\", name: \"" + first_name + "\",  userType: \"" + patientdetailsvalue + "\"}) {\r\n    requestApiResponse {\r\n      data\r\n      status {\r\n        code\r\n        message\r\n      }\r\n      success\r\n    }\r\n  }\r\n}",
     variables: {}
   })
 };
