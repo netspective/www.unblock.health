@@ -166,7 +166,7 @@ $.ajax(settings).done(function (response) {
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://devl-crm.unblock.health/legacy/Api/access_token",
+    "url": "https://devl-crm.unblock.health/Api/access_token",
     "method": "POST",
     "headers": {
       "Accept": "application/vnd.api+json"
@@ -182,7 +182,7 @@ $.ajax(settings).done(function (response) {
     var obj = $.parseJSON(response);
     var access_token = obj.access_token;
     var settings = {
-      "url": "https://devl-crm.unblock.health/legacy/Api/V8/module",
+      "url": "https://devl-crm.unblock.health/Api/V8/module",
       "method": "POST",
       "headers": {
         "Accept": "application/vnd.api+json",
@@ -199,7 +199,7 @@ $.ajax(settings).done(function (response) {
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://devl-crm.unblock.health/legacy/Api/V8/module/Accounts/c548fc60-389f-8f5b-5ecb-64cce0924678/relationships",
+        "url": "https://devl-crm.unblock.health/Api/V8/module/Accounts/c548fc60-389f-8f5b-5ecb-64cce0924678/relationships",
         "method": "POST",
         "headers": {
           "Accept": "application/vnd.api+json",
@@ -304,7 +304,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
       var obj = $.parseJSON(response);
       var access_token = obj.access_token;
       var settings = {
-        "url": "https://devl-crm.unblock.health/legacy/Api/V8/module",
+        "url": "https://devl-crm.unblock.health/Api/V8/module",
         "method": "POST",
         "headers": {
           "Accept": "application/vnd.api+json",
@@ -321,7 +321,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": "https://devl-crm.unblock.health/legacy/Api/V8/module/Accounts/c548fc60-389f-8f5b-5ecb-64cce0924678/relationships",
+          "url": "https://devl-crm.unblock.health/Api/V8/module/Accounts/c548fc60-389f-8f5b-5ecb-64cce0924678/relationships",
           "method": "POST",
           "headers": {
             "Accept": "application/vnd.api+json",
