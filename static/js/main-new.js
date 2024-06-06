@@ -190,10 +190,23 @@ $.ajax(settings).done(function (response) {
         "Content-Type": "application/json"
       },
       "processData": false,
-      "data": "{\r\n  \"data\": {\r\n    \"type\": \"Contacts\",\r\n    \"id\": \"" + uid + "\",\r\n    \"attributes\": {\r\n     \"first_name\":\"" + first_name + "\",\r\n     \"email1\":\"" + email + "\"\r\n,\r\n     \"lead_source\":\"Web Site\"\r\n,\r\n     \"title\":\"" + patientdetails + "\"\r\n   }\r\n  }\r\n}\r\n"
+      "data": "{\r\n  \"data\": {\r\n    \"type\": \"Contacts\",\r\n    \"id\": \"" + uid + "\",\r\n    \"attributes\": {\r\n     \"first_name\":\"" + first_name + "\",\r\n     \"email1\":\"" + email + "\"\r\n,\r\n     \"lead_source\":\"Web Site\"\r\n,\r\n     \"title\":\"" + patientdetails + "\"\r\n,\r\n     \"account_id\":\"c548fc60-389f-8f5b-5ecb-64cce0924678\"\r\n   }\r\n  }\r\n}\r\n"
     }
-
+    
     $.ajax(settings).done(function (response) {
+      //console.log(response.data.id);
+      if (response.data.id !='') {
+        $('#name').val('');
+        $('#email').val('');
+        $('.loader-form').hide();
+        var $success = $('#success'); // get the reference of the div
+        $success.show().html('We appreciate your registration with Unblock Health.');
+        //setInterval('location.reload()', 800);
+        
+      }
+    });
+
+    /*$.ajax(settings).done(function (response) {
       // console.log(response);
       var contactid = response.data.id;
       var settings = {
@@ -222,7 +235,8 @@ $.ajax(settings).done(function (response) {
           
         }
       });
-    });
+    });*/
+
   });
   // console.log("API call successful:", response);
 }).fail(function(error) {
@@ -312,10 +326,18 @@ $('#contact-submit-live').prop('disabled', 'disabled');
           "Content-Type": "application/json"
         },
         "processData": false,
-        "data": "{\r\n  \"data\": {\r\n    \"type\": \"Contacts\",\r\n    \"id\": \"" + uid + "\",\r\n    \"attributes\": {\r\n     \"first_name\":\"" + first_name + "\",\r\n     \"email1\":\"" + email + "\"\r\n,\r\n     \"lead_source\":\"Web Site\"\r\n,\r\n     \"title\":\"GEN\"\r\n,\r\n     \"description\":\"" + description + "\"\r\n   }\r\n  }\r\n}\r\n"
+        "data": "{\r\n  \"data\": {\r\n    \"type\": \"Contacts\",\r\n    \"id\": \"" + uid + "\",\r\n    \"attributes\": {\r\n     \"first_name\":\"" + first_name + "\",\r\n     \"email1\":\"" + email + "\"\r\n,\r\n     \"lead_source\":\"Web Site\"\r\n,\r\n     \"title\":\"GEN\"\r\n,\r\n     \"description\":\"" + description + "\"\r\n,\r\n     \"account_id\":\"c548fc60-389f-8f5b-5ecb-64cce0924678\"\r\n   }\r\n  }\r\n}\r\n"
       }
-  
       $.ajax(settings).done(function (response) {
+        //console.log(response.data.id);
+        if (response.data.id !='') {
+          $("#contactform").trigger("reset");
+          var $success = $('#successfooter'); // get the reference of the div
+          $success.show().html('Your Message was sent successfully');
+          
+        }
+      });
+      /*$.ajax(settings).done(function (response) {
         //console.log(response);
         var contactid = response.data.id;
         var settings = {
@@ -341,7 +363,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
             
           }
         });
-      });
+      });*/
     });
   });
 
