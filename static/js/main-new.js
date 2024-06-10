@@ -293,7 +293,8 @@ $('#contact-submit-live').prop('disabled', 'disabled');
       $('#messagealert').css('display', 'none');
     }
     var description = 'Subject: '+subject;
-    description += '&#013;&#010;';
+    //description += '&#013;&#010;&#013;&#010;&#013;&#010;';
+    description += '<br />';
     description += 'Message: '+message;
     var form = new FormData();
     form.append("grant_type", "client_credentials");
