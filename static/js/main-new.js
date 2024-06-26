@@ -259,15 +259,30 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
   $('#contact-submit').click(function (e) {
     e.preventDefault();
-    var recaptcha_response = $("#g-recaptcha-response").val();
-    var secret_key = $("#sitkey").val();
-    
-    var verify_url = 'https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${recaptcha_response}'
-    
-    response = requests.post(verify_url)
-    result = response.json()
+  // Get the reCAPTCHA response and secret key values from the input fields
+var recaptcha_response = $("#g-recaptcha-response").val();
+var secret_key = $("#sitkey").val();
+
+// Construct the URL using template literals for easier variable interpolation
+var verify_url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${recaptcha_response}`;
+
+// Use Fetch API to make a POST request
+fetch(verify_url, {
+    method: 'POST'
+})
+.then(response => response.json())  // Parse the JSON response
+.then(result => {
+    // Handle the result here
     console.log(result);
-    return false;
+})
+.catch(error => {
+    // Handle any errors that occur
+    console.error('Error:', error);
+});
+
+// Prevent the default form submission
+return false;
+
     var recaptcha = $("#g-recaptcha-response").val();
     var $errorfooter = $('#errorfooter'); // get the reference of the div   
     if (recaptcha === "") {
