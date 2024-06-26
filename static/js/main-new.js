@@ -259,116 +259,104 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
   $('#contact-submit').click(function (e) {
     e.preventDefault();
-    var uid = 0;
-    uid = uuidv4();
-    var first_name = $('#quickname').val();
-    var email = $('#quickemail').val();
-    var subject = $('#quicksubject').val();
-    var message = $('#quickmessage').val();
-    var o = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    if (first_name == '') {
-      $('#quicknamealert').css('display', 'block');
-      return false;
-    }
-    else {
-      $('#quicknamealert').css('display', 'none');
-    }
-    if (email == '' || email.search(o) == -1) {
-      $('#quickemailalert').css('display', 'block');
-      return false;
-    }
-    else {
-      $('#quickemailalert').css('display', 'none');
-    }
-    if (subject == '') {
-      $('#quicksubjectalert').css('display', 'block');
-      return false;
-    }
-    else {
-      $('#quicksubjectalert').css('display', 'none');
-    }
-    if (message == '') {
-      $('#messagealert').css('display', 'block');
-      return false;
-    }
-    else {
-      $('#messagealert').css('display', 'none');
-    }
-    var description = 'Subject: '+subject;
-    //description += '&#013;&#010;&#013;&#010;&#013;&#010;';
-    description += '<br />';
-    description += 'Message: '+message;
-    var form = new FormData();
-    form.append("grant_type", "client_credentials");
-    form.append("client_id", "2876ba3c-cae4-e1a5-7d8e-6673cf6a799f");
-    form.append("client_secret", "ioDlA7#09yyM");
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://uat.crm.unblock.health/legacy/Api/access_token",
-      "method": "POST",
-      "headers": {
-        "Accept": "application/vnd.api+json"
-      },
-      "processData": false,
-      "contentType": false,
-      "mimeType": "multipart/form-data",
-      "data": form
-    }
-  
-    $.ajax(settings).done(function (response) {
-  
-      var obj = $.parseJSON(response);
-      var access_token = obj.access_token;
-      var settings = {
-        "url": "https://uat.crm.unblock.health/legacy/Api/V8/module",
-        "method": "POST",
-        "headers": {
-          "Accept": "application/vnd.api+json",
-          "Authorization": "Bearer " + access_token + "",
-          "Content-Type": "application/json"
-        },
-        "processData": false,
-        "data": "{\r\n  \"data\": {\r\n    \"type\": \"Contacts\",\r\n    \"id\": \"" + uid + "\",\r\n    \"attributes\": {\r\n     \"first_name\":\"" + first_name + "\",\r\n     \"email1\":\"" + email + "\"\r\n,\r\n     \"lead_source\":\"Web Site\"\r\n,\r\n     \"title\":\"GEN\"\r\n,\r\n     \"description\":\"" + description + "\"\r\n,\r\n     \"account_id\":\"aba27ce2-d758-bdeb-adef-5da4294bf9e8\"\r\n   }\r\n  }\r\n}\r\n"
-      }
-      $.ajax(settings).done(function (response) {
-        //console.log(response.data.id);
-        if (response.data.id !='') {
-          $("#contactform").trigger("reset");
-          var $success = $('#successfooter'); // get the reference of the div
-          $success.show().html('Your Message was sent successfully');
-          
+    var recaptcha = $("#g-recaptcha-response").val();
+    var $errorfooter = $('#errorfooter'); // get the reference of the div   
+    if (recaptcha === "") {
+        $errorfooter.show().html('Recaptcha Error');
+        return false;
+    } else {
+      var $success = $('#successfooter'); // get the reference of the div
+      $success.show().html('Your Message was sent successfully');
+        /*var uid = uuidv4();
+        var first_name = $('#quickname').val();
+        var email = $('#quickemail').val();
+        var subject = $('#quicksubject').val();
+        var message = $('#quickmessage').val();
+        var o = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+        if (first_name == '') {
+            $('#quicknamealert').css('display', 'block');
+            return false;
+        } else {
+            $('#quicknamealert').css('display', 'none');
         }
-      });
-      /*$.ajax(settings).done(function (response) {
-        //console.log(response);
-        var contactid = response.data.id;
+        if (email == '' || email.search(o) == -1) {
+            $('#quickemailalert').css('display', 'block');
+            return false;
+        } else {
+            $('#quickemailalert').css('display', 'none');
+        }
+        if (subject == '') {
+            $('#quicksubjectalert').css('display', 'block');
+            return false;
+        } else {
+            $('#quicksubjectalert').css('display', 'none');
+        }
+        if (message == '') {
+            $('#messagealert').css('display', 'block');
+            return false;
+        } else {
+            $('#messagealert').css('display', 'none');
+        }
+
+        var description = 'Subject: ' + subject + '<br />' + 'Message: ' + message;
+        var form = new FormData();
+        form.append("grant_type", "client_credentials");
+        form.append("client_id", "2876ba3c-cae4-e1a5-7d8e-6673cf6a799f");
+        form.append("client_secret", "ioDlA7#09yyM");
+
         var settings = {
-          "async": true,
-          "crossDomain": true,
-          "url": "https://uat.crm.unblock.health/legacy/Api/V8/module/Accounts/aba27ce2-d758-bdeb-adef-5da4294bf9e8/relationships",
-          "method": "POST",
-          "headers": {
-            "Accept": "application/vnd.api+json",
-            "Authorization": "Bearer " + access_token + "",
-            "Content-Type": "application/json"
-          },
-          "processData": false,
-          "data": "{  \r\n   \"data\":{  \r\n         \"type\":\"Contacts\",\r\n         \"id\":\"" + contactid + "\"\r\n\t    \r\n      }\r\n}"
-        }
-  
+            "async": true,
+            "crossDomain": true,
+            "url": "https://uat.crm.unblock.health/legacy/Api/access_token",
+            "method": "POST",
+            "headers": {
+                "Accept": "application/vnd.api+json"
+            },
+            "processData": false,
+            "contentType": false,
+            "mimeType": "multipart/form-data",
+            "data": form
+        };
+
         $.ajax(settings).done(function (response) {
-          //console.log(response);
-          if (response.meta.message != "") {
-            $("#contactform").trigger("reset");
-            var $success = $('#successfooter'); // get the reference of the div
-            $success.show().html('Your Message was sent successfully');
-            
-          }
-        });
-      });*/
-    });
-  });
+            var obj = $.parseJSON(response);
+            var access_token = obj.access_token;
+            var settings = {
+                "url": "https://uat.crm.unblock.health/legacy/Api/V8/module",
+                "method": "POST",
+                "headers": {
+                    "Accept": "application/vnd.api+json",
+                    "Authorization": "Bearer " + access_token + "",
+                    "Content-Type": "application/json"
+                },
+                "processData": false,
+                "data": JSON.stringify({
+                    "data": {
+                        "type": "Contacts",
+                        "id": uid,
+                        "attributes": {
+                            "first_name": first_name,
+                            "email1": email,
+                            "lead_source": "Web Site",
+                            "title": "GEN",
+                            "description": description,
+                            "account_id": "aba27ce2-d758-bdeb-adef-5da4294bf9e8"
+                        }
+                    }
+                })
+            };
+
+            $.ajax(settings).done(function (response) {
+                if (response.data.id !== '') {
+                    $("#contactform").trigger("reset");
+                    var $success = $('#successfooter'); // get the reference of the div
+                    $success.show().html('Your Message was sent successfully');
+                }
+            });
+        });*/
+    }
+});
+
 
   $('#contact-submit').prop('disabled', 'disabled');
   $('#contact-submit').addClass('is-disabled');
