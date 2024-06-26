@@ -161,14 +161,14 @@ var settings = {
 $.ajax(settings).done(function (response) {
   var form = new FormData();
   form.append("grant_type", "client_credentials");
-  //form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
-  form.append("client_id", "2876ba3c-cae4-e1a5-7d8e-6673cf6a799f");
-  //form.append("client_secret", "ioDlA7#09yyM");
+  form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
+  //form.append("client_id", "2876ba3c-cae4-e1a5-7d8e-6673cf6a799f");
   form.append("client_secret", "ioDlA7#09yyM");
+  //form.append("client_secret", "ioDlA7#09yyM");
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://uat.crm.unblock.health/legacy/Api/access_token",
+    "url": "https://devl-crm.unblock.health/legacy/Api/access_token",
     "method": "POST",
     "headers": {
       "Accept": "application/vnd.api+json"
@@ -184,7 +184,7 @@ $.ajax(settings).done(function (response) {
     var obj = $.parseJSON(response);
     var access_token = obj.access_token;
     var settings = {
-      "url": "https://uat.crm.unblock.health/legacy/Api/V8/module",
+      "url": "https://devl-crm.unblock.health/legacy/Api/V8/module",
       "method": "POST",
       "headers": {
         "Accept": "application/vnd.api+json",
@@ -214,7 +214,7 @@ $.ajax(settings).done(function (response) {
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://uat.crm.unblock.health/legacy/Api/V8/module/Accounts/aba27ce2-d758-bdeb-adef-5da4294bf9e8/relationships",
+        "url": "https://devl-crm.unblock.health/legacy/Api/V8/module/Accounts/aba27ce2-d758-bdeb-adef-5da4294bf9e8/relationships",
         "method": "POST",
         "headers": {
           "Accept": "application/vnd.api+json",
@@ -259,39 +259,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
   $('#contact-submit').click(function (e) {
     e.preventDefault();
-  // Get the reCAPTCHA response and secret key values from the input fields
-var recaptcha_response = $("#g-recaptcha-response").val();
-var secret_key = $("#sitkey").val();
-
-// Construct the URL using template literals for easier variable interpolation
-var verify_url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${recaptcha_response}`;
-
-// Use Fetch API to make a POST request
-fetch(verify_url, {
-    method: 'POST'
-})
-.then(response => response.json())  // Parse the JSON response
-.then(result => {
-    // Handle the result here
-    console.log(result);
-})
-.catch(error => {
-    // Handle any errors that occur
-    console.error('Error:', error);
-});
-
-// Prevent the default form submission
-return false;
-
-    var recaptcha = $("#g-recaptcha-response").val();
-    var $errorfooter = $('#errorfooter'); // get the reference of the div   
-    if (recaptcha === "") {
-        $errorfooter.show().html('Recaptcha Error');
-        return false;
-    } else {
-      var $success = $('#successfooter'); // get the reference of the div
-      $success.show().html('Your Message was sent successfully');
-        /*var uid = uuidv4();
+        var uid = uuidv4();
         var first_name = $('#quickname').val();
         var email = $('#quickemail').val();
         var subject = $('#quicksubject').val();
@@ -331,7 +299,7 @@ return false;
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "https://uat.crm.unblock.health/legacy/Api/access_token",
+            "url": "https://devl-crm.unblock.health/legacy/Api/access_token",
             "method": "POST",
             "headers": {
                 "Accept": "application/vnd.api+json"
@@ -346,7 +314,7 @@ return false;
             var obj = $.parseJSON(response);
             var access_token = obj.access_token;
             var settings = {
-                "url": "https://uat.crm.unblock.health/legacy/Api/V8/module",
+                "url": "https://devl-crm.unblock.health/legacy/Api/V8/module",
                 "method": "POST",
                 "headers": {
                     "Accept": "application/vnd.api+json",
@@ -377,8 +345,7 @@ return false;
                     $success.show().html('Your Message was sent successfully');
                 }
             });
-        });*/
-    }
+        });
 });
 
 
