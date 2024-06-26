@@ -259,6 +259,15 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
   $('#contact-submit').click(function (e) {
     e.preventDefault();
+    var recaptcha_response = $("#g-recaptcha-response").val();
+    var secret_key = $("#sitkey").val();
+    
+    var verify_url = 'https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${recaptcha_response}'
+    
+    response = requests.post(verify_url)
+    result = response.json()
+    console.log(result);
+    return false;
     var recaptcha = $("#g-recaptcha-response").val();
     var $errorfooter = $('#errorfooter'); // get the reference of the div   
     if (recaptcha === "") {
