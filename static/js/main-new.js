@@ -293,7 +293,9 @@ $.ajax(settings).done(function (response) {
 
       const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptcha_response}`;
       console.log(verificationUrl)
-      fetch(verificationUrl, { method: 'POST' })
+      fetch(verificationUrl, { method: 'POST', headers: {
+        "Access-Control-Allow-Origin": "*",
+      }, })
         .then(response => response.json())
           .then(googleResponse => {
             console.log('googleResponse');
