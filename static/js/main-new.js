@@ -5,8 +5,8 @@ $(document).ready(function () {
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     )
   }
-  var uid = uuidv4();
-  const date = new Date();
+  
+ const date = new Date();
   const todayDate = date.toLocaleString('en-US', {
     timeZone: 'America/New_York',
     weekday:"short",
@@ -19,8 +19,54 @@ $(document).ready(function () {
     timeZoneName: "long",
     
   });
+
+  
+
+  
+  
 $('#contact-submit-live').click(function (e) {
-  e.preventDefault();  
+  // Get server time using an HTTP request
+
+// Function to convert a date to EST based on server timezone
+/*function convertToEST(serverDate) {
+  // Assuming serverDate is a valid Date object
+
+  // Get the offset in minutes
+  const serverOffset = serverDate.getTimezoneOffset();
+
+  // Calculate the offset for Eastern Standard Time (EST) in minutes
+  const estOffset = -330; // EST is UTC-5, so the offset is -5 hours * 60 minutes/hour
+
+  // Calculate the total offset in minutes
+  const totalOffset = serverOffset - estOffset;
+
+  // Create a new Date object with the adjusted time
+  const estDate = new Date(serverDate.getTime() + totalOffset * 60000);
+
+  // Format the date as a string in the "en-US" locale and "America/New_York" time zone
+  const estString = estDate.toLocaleString('en-US', { timeZone: 'America/New_York' });
+
+  return estString;
+}
+
+// Example usage:
+const serverDate = new Date(); // Replace this with your server date
+const estDateString = convertToEST(serverDate);
+const estDateformat =  estDateString  +   'Eastern Time: ';
+//console.log('Server Date:', serverDate.toLocaleString());
+console.log('EST Date:', estDateformat);*/
+
+
+
+  e.preventDefault();
+  var recaptcha_response = '';
+  var recaptcha_response = $('#g-recaptcha-response').val();
+  var $errorfooter = $('#errorfooter'); // get the reference of the div
+  $errorfooter.show().html('');
+  var $success = $('#success');
+  $success.show().html('');
+  var uid = 0;
+  uid = uuidv4();
   var first_name = $('#name').val();
   var email = $('#email').val();
   var subject = $('#subject').val();
@@ -57,26 +103,25 @@ $('#contact-submit-live').click(function (e) {
   else {
     $('#patientalert').css('display', 'none');
   }
-  /*Novu Integration For Sending Mail */
   if(patientdetails == 'PA'){
     var patientdetailsvalue = 'PPA';
   } else if(patientdetails == 'HIM'){
     var patientdetailsvalue = 'HIM';
   } else if(patientdetails == 'PAT'){
     var patientdetailsvalue = 'PAT';
-  }else {
+  } else {
     var patientdetailsvalue = '';
   }
   $('#contact-submit-live').prop('disabled', 'disabled');
   $('#contact-submit-live').addClass('is-disabled');
   $('.loader-form').show();
- /* var concatenatedValues = first_name + "|" + email + "|" + patientdetailsvalue;
+  //var concatenatedValues = first_name + "|" + email + "|" + patientdetailsvalue;
 
-  var encodedValues = btoa(concatenatedValues);
-  var NovuBaseURL = $('#_novbaseurl').val();
-  var regformToEmail = $('#_regformsupportemail').val();
-  var inviteurl = NovuBaseURL+'token='+encodedValues;
-  var registerFormData = {
+  //var encodedValues = btoa(concatenatedValues);
+  //var NovuBaseURL = $('#_novbaseurl').val();
+  //var regformToEmail = $('#_regformsupportemail').val();
+  //var inviteurl = NovuBaseURL+'token='+encodedValues;
+ /*var registerFormData = {
     "name": "ubh-notify-user-registration",
     "to": {
         "subscriberId": regformToEmail,
@@ -90,35 +135,24 @@ $('#contact-submit-live').click(function (e) {
         "registration_type": patientdetailsvalue,
         "registration_datetime": todayDate
     }
-  }; 
+  };
   var settings = {
-    "url": "https://api.novu.infra.medigy.com/v1/events/trigger",
+    "url": "https://api.novu.infra.experimental.medigy.com/v1/events/trigger",
     "method": "POST",
     "timeout": 0,
     "headers": {
-      "Authorization": "ApiKey fa94fe1651ebb4d55a1bdfe6e5810a16",
+      "Authorization": "ApiKey 173122ce8b63e1199b61fb7ced626f8a",
       "Content-Type": "application/json"
     },
     "data": JSON.stringify(registerFormData),
-};
-  /* End of Novu Integration */
-  /*var settings = {
-  "url": "https://prime.dcp.infra.co.medigy.com/graphql",
-  "method": "POST",
-  "timeout": 0,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": JSON.stringify({
-    query: "mutation MyMutation {\r\n  notifyUserRegistrationV1(input: {email: \"" + email + "\", name: \"" + first_name + "\",  userType: \"" + patientdetails + "\"}) {\r\n    requestApiResponse {\r\n      data\r\n      status {\r\n        code\r\n        message\r\n      }\r\n      success\r\n    }\r\n  }\r\n}",
-    variables: {}
-  })
 };*/
+if(recaptcha_response) {
 var settings = {
   "url": "https://prime.dcp.infra.experimental.unblock.health/graphql",
   "method": "POST",
   "timeout": 0,
   "headers": {
+    "qu": "",
     "Content-Type": "application/json"
   },
   "data": JSON.stringify({
@@ -126,32 +160,65 @@ var settings = {
     variables: {}
   })
 };
+
+
 $.ajax(settings).done(function (response) {
-    var form = new FormData();
-    form.append("grant_type", "client_credentials");
+  var form = new FormData();
+  form.append("grant_type", "client_credentials");
   form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
-  //form.append("client_id", "2876ba3c-cae4-e1a5-7d8e-6673cf6a799f");
+  //form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
   form.append("client_secret", "ioDlA7#09yyM");
+  //form.append("client_secret", "ioDlA7#09yyM");
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://devl-crm.unblock.health/legacy/Api/access_token",
+    "method": "POST",
+    "headers": {
+      "Accept": "application/vnd.api+json"
+    },
+    "processData": false,
+    "contentType": false,
+    "mimeType": "multipart/form-data",
+    "data": form
+  }
+
+  $.ajax(settings).done(function (response) {
+
+    var obj = $.parseJSON(response);
+    var access_token = obj.access_token;
     var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://devl-crm.unblock.health/legacy/Api/access_token",
+      "url": "https://devl-crm.unblock.health/legacy/Api/V8/module",
       "method": "POST",
       "headers": {
-        "Accept": "application/vnd.api+json"
+        "Accept": "application/vnd.api+json",
+        "Authorization": "Bearer " + access_token + "",
+        "Content-Type": "application/json"
       },
       "processData": false,
-      "contentType": false,
-      "mimeType": "multipart/form-data",
-      "data": form
+      "data": "{\r\n  \"data\": {\r\n    \"type\": \"Contacts\",\r\n    \"id\": \"" + uid + "\",\r\n    \"attributes\": {\r\n     \"first_name\":\"" + first_name + "\",\r\n     \"email1\":\"" + email + "\"\r\n,\r\n     \"lead_source\":\"Web Site\"\r\n,\r\n     \"title\":\"" + patientdetails + "\"\r\n,\r\n     \"account_id\":\"aba27ce2-d758-bdeb-adef-5da4294bf9e8\"\r\n   }\r\n  }\r\n}\r\n"
     }
-
+    
     $.ajax(settings).done(function (response) {
+      //console.log(response.data.id);
+      if (response.data.id !='') {
+        $('#name').val('');
+        $('#email').val('');
+        $('.loader-form').hide();
+        var $success = $('#success'); // get the reference of the div
+        $success.show().html('We appreciate your registration with Unblock Health.');
+        //setInterval('location.reload()', 800);
+        
+      }
+    });
 
-      var obj = $.parseJSON(response);
-      var access_token = obj.access_token;
+    /*$.ajax(settings).done(function (response) {
+      // console.log(response);
+      var contactid = response.data.id;
       var settings = {
-        "url": "https://devl-crm.unblock.health/legacy/Api/V8/module",
+        "async": true,
+        "crossDomain": true,
+        "url": "https://devl-crm.unblock.health/legacy/Api/V8/module/Accounts/aba27ce2-d758-bdeb-adef-5da4294bf9e8/relationships",
         "method": "POST",
         "headers": {
           "Accept": "application/vnd.api+json",
@@ -159,41 +226,33 @@ $.ajax(settings).done(function (response) {
           "Content-Type": "application/json"
         },
         "processData": false,
-        "data": "{\r\n  \"data\": {\r\n    \"type\": \"Contacts\",\r\n    \"id\": \"" + uid + "\",\r\n    \"attributes\": {\r\n     \"first_name\":\"" + first_name + "\",\r\n     \"email1\":\"" + email + "\"\r\n,\r\n     \"lead_source\":\"Web Site\"\r\n,\r\n     \"title\":\"" + patientdetails + "\"\r\n,\r\n     \"account_id\":\"aba27ce2-d758-bdeb-adef-5da4294bf9e8\"\r\n   }\r\n  }\r\n}\r\n"
+        "data": "{  \r\n   \"data\":{  \r\n         \"type\":\"Contacts\",\r\n         \"id\":\"" + contactid + "\"\r\n\t    \r\n      }\r\n}"
       }
 
-      /*$.ajax(settings).done(function (response) {
-        console.log(response);
-        var contactid = response.data.id;
-        var settings = {
-          "async": true,
-          "crossDomain": true,
-          "url": "https://devl-crm.unblock.health/legacy/Api/V8/module/Accounts/aba27ce2-d758-bdeb-adef-5da4294bf9e8/relationships",
-          "method": "POST",
-          "headers": {
-            "Accept": "application/vnd.api+json",
-            "Authorization": "Bearer " + access_token + "",
-            "Content-Type": "application/json"
-          },
-          "processData": false,
-          "data": "{  \r\n   \"data\":{  \r\n         \"type\":\"Contacts\",\r\n         \"id\":\"" + contactid + "\"\r\n\t    \r\n      }\r\n}"
-        }*/
-
       $.ajax(settings).done(function (response) {
-        if (response.data.id !='') {
-            $('#name').val('');
-            $('#email').val('');
-            var $success = $('#success'); // get the reference of the div
-            $success.show().html('We appreciate your registration with Unblock Health.');
-            //setInterval('location.reload()', 800);
-            //$success.show().html('');
-          }
-
+        // console.log(response);
+        if (response.meta.message != "") {
+          $('#name').val('');
+          $('#email').val('');
+          $('.loader-form').hide();
+          var $success = $('#success'); // get the reference of the div
+          $success.show().html('We appreciate your registration with Unblock Health.');
+          //setInterval('location.reload()', 800);
+          
+        }
       });
-    });
-  }).fail(function(error) {
-    console.error("API call error:", error);
+    });*/
+  
   });
+  // console.log("API call successful:", response);
+}).fail(function(error) {
+  console.error("API call error:", error);
+});
+}
+else {
+  var $errorfooter = $('#errorfooter'); // get the reference of the div
+  $errorfooter.show().html('Please select CAPTCHA');
+}
 });
 
 $('#contact-submit-live').prop('disabled', 'disabled');
@@ -208,112 +267,102 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
   $('#contact-submit').click(function (e) {
     e.preventDefault();
-    var recaptcha_response = document.getElementById("g-recaptcha-response").value;
-    var first_name = $('#quickname').val();
-    var email = $('#quickemail').val();
-    var subject = $('#quicksubject').val();
-    var message = $('#quickmessage').val();
-    var o = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    if (first_name == '') {
-      $('#quicknamealert').css('display', 'block');
-      return false;
-    }
-    else {
-      $('#quicknamealert').css('display', 'none');
-    }
-    if (email == '' || email.search(o) == -1) {
-      $('#quickemailalert').css('display', 'block');
-      return false;
-    }
-    else {
-      $('#quickemailalert').css('display', 'none');
-    }
-    if (subject == '') {
-      $('#quicksubjectalert').css('display', 'block');
-      return false;
-    }
-    else {
-      $('#quicksubjectalert').css('display', 'none');
-    }
-    if (message == '') {
-      $('#messagealert').css('display', 'block');
-      return false;
-    }
-    else {
-      $('#messagealert').css('display', 'none');
-    }
-    /*var description = 'Subject: '+subject;
-    description += '&#013;&#010;';
-    description += 'Message: '+message;*/
-    var description = 'Subject: ' + subject + '<br />' + 'Message: ' + message;
-    if(recaptcha_response){
-    var form = new FormData();
-    form.append("grant_type", "client_credentials");
-    form.append("client_id", "2876ba3c-cae4-e1a5-7d8e-6673cf6a799f");
-    form.append("client_secret", "ioDlA7#09yyM");
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://devl-crm.unblock.health/legacy/Api/access_token",
-      "method": "POST",
-      "headers": {
-        "Accept": "application/vnd.api+json"
-      },
-      "processData": false,
-      "contentType": false,
-      "mimeType": "multipart/form-data",
-      "data": form
-    }
-  
-    $.ajax(settings).done(function (response) {
-  
-      var obj = $.parseJSON(response);
-      var access_token = obj.access_token;
-      var settings = {
-        "url": "https://devl-crm.unblock.health/legacy/Api/V8/module",
-        "method": "POST",
-        "headers": {
-          "Accept": "application/vnd.api+json",
-          "Authorization": "Bearer " + access_token + "",
-          "Content-Type": "application/json"
-        },
-        "processData": false,
-        "data": "{\r\n  \"data\": {\r\n    \"type\": \"Contacts\",\r\n    \"id\": \"" + uid + "\",\r\n    \"attributes\": {\r\n     \"first_name\":\"" + first_name + "\",\r\n     \"email1\":\"" + email + "\"\r\n,\r\n     \"lead_source\":\"Web Site\"\r\n,\r\n     \"title\":\"GEN\"\r\n,\r\n     \"description\":\"" + description + "\"\r\n,\r\n     \"account_id\":\"aba27ce2-d758-bdeb-adef-5da4294bf9e8\"\r\n   }\r\n  }\r\n}\r\n"
-      }
-  
-      /*$.ajax(settings).done(function (response) {
-        //console.log(response);
-        var contactid = response.data.id;
+    var recaptcha_response = $('#g-recaptcha-response').val();
+    //console.log(recaptcha_response);
+        var uid = uuidv4();
+        var first_name = $('#quickname').val();
+        var email = $('#quickemail').val();
+        var subject = $('#quicksubject').val();
+        var message = $('#quickmessage').val();
+        var o = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+        if (first_name == '') {
+            $('#quicknamealert').css('display', 'block');
+            return false;
+        } else {
+            $('#quicknamealert').css('display', 'none');
+        }
+        if (email == '' || email.search(o) == -1) {
+            $('#quickemailalert').css('display', 'block');
+            return false;
+        } else {
+            $('#quickemailalert').css('display', 'none');
+        }
+        if (subject == '') {
+            $('#quicksubjectalert').css('display', 'block');
+            return false;
+        } else {
+            $('#quicksubjectalert').css('display', 'none');
+        }
+        if (message == '') {
+            $('#messagealert').css('display', 'block');
+            return false;
+        } else {
+            $('#messagealert').css('display', 'none');
+        }
+
+        var description = 'Subject: ' + subject + '<br />' + 'Message: ' + message;
+        if (recaptcha_response) {
+        var form = new FormData();
+        form.append("grant_type", "client_credentials");
+        form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
+        form.append("client_secret", "ioDlA7#09yyM");
+     
         var settings = {
-          "async": true,
-          "crossDomain": true,
-          "url": "https://devl-crm.unblock.health/legacy/Api/V8/module/Accounts/aba27ce2-d758-bdeb-adef-5da4294bf9e8/relationships",
-          "method": "POST",
-          "headers": {
-            "Accept": "application/vnd.api+json",
-            "Authorization": "Bearer " + access_token + "",
-            "Content-Type": "application/json"
-          },
-          "processData": false,
-          "data": "{  \r\n   \"data\":{  \r\n         \"type\":\"Contacts\",\r\n         \"id\":\"" + contactid + "\"\r\n\t    \r\n      }\r\n}"
-        }*/
-  
+            "async": true,
+            "crossDomain": true,
+            "url": "https://devl-crm.unblock.health/legacy/Api/access_token",
+            "method": "POST",
+            "headers": {
+                "Accept": "application/vnd.api+json"
+            },
+            "processData": false,
+            "contentType": false,
+            "mimeType": "multipart/form-data",
+            "data": form
+        };
+
         $.ajax(settings).done(function (response) {
-          //console.log(response);
-          if (response.data.id !='') {
-            $("#contactform").trigger("reset");
-            var $success = $('#successfooter'); // get the reference of the div
-            $success.show().html('Your Message was sent successfully');
-          }
+            var obj = $.parseJSON(response);
+            var access_token = obj.access_token;
+            var settings = {
+                "url": "https://devl-crm.unblock.health/legacy/Api/V8/module",
+                "method": "POST",
+                "headers": {
+                    "Accept": "application/vnd.api+json",
+                    "Authorization": "Bearer " + access_token + "",
+                    "Content-Type": "application/json"
+                },
+                "processData": false,
+                "data": JSON.stringify({
+                    "data": {
+                        "type": "Contacts",
+                        "id": uid,
+                        "attributes": {
+                            "first_name": first_name,
+                            "email1": email,
+                            "lead_source": "Web Site",
+                            "title": "GEN",
+                            "description": description,
+                            "account_id": "aba27ce2-d758-bdeb-adef-5da4294bf9e8"
+                        }
+                    }
+                })
+            };
+
+            $.ajax(settings).done(function (response) {
+                if (response.data.id !== '') {
+                    $("#contactform").trigger("reset");
+                    var $success = $('#successfooter'); // get the reference of the div
+                    $success.show().html('Your Message was sent successfully');
+                }
+            });
         });
-      //});
-     });
-    } else {
-      var $errorfooter = $('#errorfooter'); // get the reference of the div
-      $errorfooter.show().html('Error in recaptcha');
-      
-    }
-  });
+      }else{
+        var $errorfooter = $('#errorfooter'); // get the reference of the div
+        $errorfooter.show().html('Please select CAPTCHA');
+      }
+});
+
 
   $('#contact-submit').prop('disabled', 'disabled');
   $('#contact-submit').addClass('is-disabled');
@@ -367,7 +416,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
             
           },
           success: function(data, status, jqXHR){
-            console.log(data);
+            // console.log(data);
             
             var photo = data.data.id;      
             var full_url =   data.data.data.full_url;      
@@ -450,7 +499,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
       "data": JSON.stringify({"to": to, "subject": subject , "body" :  body })
     }
     $.ajax(settings).done(function (response) {
-      console.log(response);
+      // console.log(response);
     });
   } 
 
@@ -482,7 +531,7 @@ $(".image-preview-input input:file").change(function (){
       $(".image-clear-btn").removeClass("slds-hide");
       $(".image-clear-btn").addClass("slds-show");
       $(".image-preview-filename").html(file.name);
-      console.log(file.name);            
+      // console.log(file.name);            
       img.attr('src', e.target.result);
       $(".myPopover").removeClass("slds-hide").append($(img)[0].outerHTML);
       //console.log($("#myPopover p").attr("data-content",$(img)[0].outerHTML));
