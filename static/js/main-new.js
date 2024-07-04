@@ -20,7 +20,18 @@ $(document).ready(function () {
     
   });
 
-  
+
+  var verifyCallback0 ="";
+  window.verifyCallback2 = function(response) {
+    verifyCallback0 = response;
+  };
+  var verifyCallback3 ="";
+  window.verifyCallback1 = function(response) {
+    verifyCallback3 = response;
+  };
+
+
+ //console.log(verifyCallback0); 
 
   
   
@@ -59,8 +70,11 @@ console.log('EST Date:', estDateformat);*/
 
 
   e.preventDefault();
+ 
+
   var recaptcha_response = '';
-  var recaptcha_response = $('#g-recaptcha-response').val();
+  var recaptcha_response = verifyCallback0;
+  console.log(recaptcha_response);
   var $errorfooter = $('#errorfooter'); // get the reference of the div
   $errorfooter.show().html('');
   var $success = $('#success');
@@ -112,9 +126,7 @@ console.log('EST Date:', estDateformat);*/
   } else {
     var patientdetailsvalue = '';
   }
-  $('#contact-submit-live').prop('disabled', 'disabled');
-  $('#contact-submit-live').addClass('is-disabled');
-  $('.loader-form').show();
+
   //var concatenatedValues = first_name + "|" + email + "|" + patientdetailsvalue;
 
   //var encodedValues = btoa(concatenatedValues);
@@ -147,6 +159,10 @@ console.log('EST Date:', estDateformat);*/
     "data": JSON.stringify(registerFormData),
 };*/
 if(recaptcha_response) {
+  $('.loader-form').show();
+  $('#error').hide();
+  $('#contact-submit-live').prop('disabled', 'disabled');
+  $('#contact-submit-live').addClass('is-disabled');
 var settings = {
   "url": "https://prime.dcp.infra.experimental.unblock.health/graphql",
   "method": "POST",
@@ -249,9 +265,9 @@ $.ajax(settings).done(function (response) {
   console.error("API call error:", error);
 });
 }
-else {
-  var $errorfooter = $('#errorfooter'); // get the reference of the div
-  $errorfooter.show().html('Please select CAPTCHA');
+else{
+  var $error = $('#error'); // get the reference of the div
+  $error.show().html('Please select CAPTCHA');
 }
 });
 
@@ -267,7 +283,8 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
   $('#contact-submit').click(function (e) {
     e.preventDefault();
-    var recaptcha_response = $('#g-recaptcha-response').val();
+    var recaptchaResponse='';
+    var recaptcha_response = verifyCallback3;
     //console.log(recaptcha_response);
         var uid = uuidv4();
         var first_name = $('#quickname').val();
@@ -302,6 +319,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
         var description = 'Subject: ' + subject + '<br />' + 'Message: ' + message;
         if (recaptcha_response) {
+          $('#errorfooter').hide();
         var form = new FormData();
         form.append("grant_type", "client_credentials");
         form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
