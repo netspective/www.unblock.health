@@ -32,7 +32,8 @@
                             <textarea class="form-control" placeholder="Message*" rows="3" name="Message" id="quickmessage" required></textarea>
                         </div>
                         <input type="hidden" name="_subject" value="[UnBlock Health] - Contact Form Submission" />
-                        <input id="contact-submit" type="button" class="btn btn-send" value="Send">   
+                        <input id="contact-submit" type="button" class="btn btn-send" value="Send">
+                        This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" class=" text-blue-600">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" class=" text-blue-600">Terms of Service</a> apply.
                             <!--<button class="btn btn-send" id="contact-submit" type="submit">Send</button>-->
                         </form>
                         <div id="successfooter" style="display:none;">
@@ -180,10 +181,10 @@
                     </div>
                    
                     <input type="hidden" name="_subject" value="[UnBlock Health] - Contact Form Submission" />
-                    <div class="slds-p-vertical_x-small g-recaptcha" data-sitekey="6LfG8v8pAAAAAL_bNl24ICh0nOSe5Yx2GnXOmhVD"  data-callback="verifyCallback1"></div>
-                    <button id="contact-submit"  class="slds-button slds-button_brand slds-button_stretch slds-p-vertical_small slds-p-horizontal_medium slds-color__text_gray-1">
+                    <!--<div class="slds-p-vertical_x-small g-recaptcha" data-sitekey="6LcwogEqAAAAAI2QtVzQNHKN2kE2zXkodWEUzHfD"  data-callback="verifyCallback1"></div>-->
+                    <button id="contact-submit"  class="g-recaptcha slds-button slds-button_brand slds-button_stretch slds-p-vertical_small slds-p-horizontal_medium slds-color__text_gray-1" data-sitekey="{{ .context.Site.Params.recaptchasitekey}}"  data-callback="verifyCallback0"  data-size="invisible">
                       <span class="slds-text-body_small slds-text-title_caps slds-color__text_gray-1"><b>Send</b></span></button>
-
+                      <div class="slds-form-element__control slds-m-bottom_medium">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" class=" text-blue-600">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" class=" text-blue-600">Terms of Service</a> apply.</div>
                   </div>
                   </form>
                   

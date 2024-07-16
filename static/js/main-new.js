@@ -21,19 +21,17 @@ $(document).ready(function () {
   });
 
 
-  var verifyCallback0 ="";
+  /*var verifyCallback0 ="";
   window.verifyCallback2 = function(response) {
     verifyCallback0 = response;
   };
   var verifyCallback3 ="";
   window.verifyCallback1 = function(response) {
     verifyCallback3 = response;
-  };
-
-
- //console.log(verifyCallback0); 
-
+  };*/
   
+
+ 
   
 $('#contact-submit-live').click(function (e) {
   // Get server time using an HTTP request
@@ -70,11 +68,13 @@ console.log('EST Date:', estDateformat);*/
 
 
   e.preventDefault();
- 
-
-  var recaptcha_response = '';
-  var recaptcha_response = verifyCallback0;
-  console.log(recaptcha_response);
+  
+  var verifyCallback1 ="";
+  window.verifyCallback2 = function(token) {
+    verifyCallback1 = token;
+  var recaptcha_response1 = '';
+  recaptcha_response1 = verifyCallback1;
+  console.log(recaptcha_response1);
   var $errorfooter = $('#errorfooter'); // get the reference of the div
   $errorfooter.show().html('');
   var $success = $('#success');
@@ -158,7 +158,7 @@ console.log('EST Date:', estDateformat);*/
     },
     "data": JSON.stringify(registerFormData),
 };*/
-if(recaptcha_response) {
+if(recaptcha_response1) {
   $('.loader-form').show();
   $('#error').hide();
   $('#contact-submit-live').prop('disabled', 'disabled');
@@ -269,6 +269,7 @@ else{
   var $error = $('#error'); // get the reference of the div
   $error.show().html('Please select CAPTCHA');
 }
+  };
 });
 
 $('#contact-submit-live').prop('disabled', 'disabled');
@@ -283,8 +284,10 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
   $('#contact-submit').click(function (e) {
     e.preventDefault();
-    var recaptchaResponse='';
-    var recaptcha_response = verifyCallback3;
+    var verifyCallback3 ="";
+   window.verifyCallback0 = function(token) {
+    var recaptcha_response='';
+    var recaptcha_response = token;
     console.log(recaptcha_response);
         var uid = uuidv4();
         var first_name = $('#quickname').val();
@@ -379,6 +382,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
         var $errorfooter = $('#errorfooter'); // get the reference of the div
         $errorfooter.show().html('Please select CAPTCHA');
       }
+  }
 });
 
 

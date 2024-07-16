@@ -2,7 +2,7 @@
 
 {{ $context := . }}
 {{- partialCached "head" (dict "activeMenu" "Register" "context" $context ) "register-page-key" -}}  
-  
+<script src="{{.Site.Params.recaptchaurl}}" ></script>  
 <!-- main starts > -->
 <main>
 <section class="slds-color__background_gray-1 slds-p-vertical_x-large">   
@@ -37,14 +37,14 @@
             <option value="HIM">Hospital HIM</option>
             </select>
             </div>
-            <div class="slds-p-vertical_x-small g-recaptcha" data-sitekey="6LfG8v8pAAAAAL_bNl24ICh0nOSe5Yx2GnXOmhVD" data-callback="verifyCallback2"></div>
+            <!--<div class="slds-p-vertical_x-small g-recaptcha" data-sitekey="6LcwogEqAAAAAI2QtVzQNHKN2kE2zXkodWEUzHfD" data-callback="verifyCallback2"></div>-->
             <input type="hidden" name="_subject" value="[UnBlock Health] - Contact Form Submission" />
             <input type="hidden" name="_subject" value="[UnBlock Health] - Contact Form Submission" />
             <input type="hidden" name="_novbaseurl" id="_novbaseurl" value={{.Site.Params.novuBaseURL}} />
             <input type="hidden" name="_regformsupportemail" id="_regformsupportemail" value={{.Site.Params.unblockHealthSupportEmail}} />  
             </div>
 
-          <button class="slds-button slds-button_stretch slds-button_brand slds-p-around_medium slds-color__text_gray-1 slds-m-bottom_small"  id="contact-submit-live">
+          <button class="g-recaptcha slds-button slds-button_stretch slds-button_brand slds-p-around_medium slds-color__text_gray-1 slds-m-bottom_small"  id="contact-submit-live" data-sitekey="{{.Site.Params.recaptchasitekey}}"  data-callback="verifyCallback2"  data-size="invisible">
             <span class="slds-text-heading_medium" style="font-size: 24px;text-transform:uppercase;"><b>Register</b></span></button>
         </div>
         <div class="loader-form" style="height:3rem;position:relative;width:100%;display:none;align-items: center;justify-content: center;">
@@ -55,6 +55,7 @@
               </div>
           </div>
       </div>
+      <div class="slds-form-element__control slds-m-bottom_medium">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" class=" text-blue-600">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" class=" text-blue-600">Terms of Service</a> apply.</div>
 	 </form>
    <div id="success" style="display:none;">
 
