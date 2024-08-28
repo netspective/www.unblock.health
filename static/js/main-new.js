@@ -74,7 +74,7 @@ console.log('EST Date:', estDateformat);*/
     verifyCallback1 = token;
   var recaptcha_response1 = '';
   recaptcha_response1 = verifyCallback1;
-  console.log(recaptcha_response1);
+  //console.log(recaptcha_response1);
   var $errorfooter = $('#errorfooter'); // get the reference of the div
   $errorfooter.show().html('');
   var $success = $('#success');
@@ -323,6 +323,17 @@ $('#contact-submit-live').prop('disabled', 'disabled');
         var description = 'Subject: ' + subject + '<br />' + 'Message: ' + message;
         if (recaptcha_response) {
           $('#errorfooter').hide();
+          // Push the form data to the dataLayer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'contactformSubmit',
+      'formData': {
+        'contactName': document.getElementById('quickname').value,
+        'contactEmail': document.getElementById('quickemail').value,
+        'contactSubject': document.getElementById('quicksubject').value,
+        'contactMessage': document.getElementById('quickmessage').value
+      }
+    });
         var form = new FormData();
         form.append("grant_type", "client_credentials");
         form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
