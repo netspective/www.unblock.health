@@ -324,16 +324,17 @@ $('#contact-submit-live').prop('disabled', 'disabled');
         if (recaptcha_response) {
           $('#errorfooter').hide();
           // Push the form data to the dataLayer
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      'event': 'contactformSubmit',
-      'formData': {
-        'contactName': document.getElementById('quickname').value,
-        'contactEmail': document.getElementById('quickemail').value,
-        'contactSubject': document.getElementById('quicksubject').value,
-        'contactMessage': document.getElementById('quickmessage').value
-      }
-    });
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            'event': 'contactformSubmit',
+            'formData': {
+              'contactName': document.getElementById('quickname').value,
+              'contactEmail': document.getElementById('quickemail').value,
+              'contactSubject': document.getElementById('quicksubject').value,
+              'contactMessage': document.getElementById('quickmessage').value
+            }
+          });
+          console.log(window.dataLayer);
         var form = new FormData();
         form.append("grant_type", "client_credentials");
         form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
