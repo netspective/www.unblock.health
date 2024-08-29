@@ -328,10 +328,10 @@ $('#contact-submit-live').prop('disabled', 'disabled');
           window.dataLayer.push({
             'event': 'contactformSubmit',
             'formData': {
-              'contactName': document.getElementById('quickname').value,
-              'contactEmail': document.getElementById('quickemail').value,
-              'contactSubject': document.getElementById('quicksubject').value,
-              'contactMessage': document.getElementById('quickmessage').value
+              'contactName': first_name,
+              'contactEmail': email,
+              'contactSubject': subject,
+              'contactMessage': message
             }
           });
           console.log(window.dataLayer);
