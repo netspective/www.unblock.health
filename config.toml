@@ -20,7 +20,7 @@ unsafe                            = true
     Description  = "The first-in-class comprehensive digital healthcare suite of patient advocacy tools for patients and consumers who are determined to be empowered in their health care journey. Unblock Health is revolutionizing patient autonomy and healthcare consumerism."
     logotitle ="Comprehensive Healthcare Suite of Patient Advocacy Services designed for Patients and Consumers - Unblock Health"
     footersectionaboutcontent ="Unblock Health rejects traditional barriers to patient health information. We empower patients to play an active role in their care and help HIM professionals deliver a positive experience."
-    recaptchasitekey ="6LcQMhAqAAAAAHWNJgHKCrHOeP94_As2Uz_sFNs9"
+    recaptchasitekey ="6LefMhAqAAAAAInXVvgjN5D_gPpa86RCAldVy7sm"
     recaptchaurl = "https://www.google.com/recaptcha/api.js"
     # Navigation
     [params.navigation]
