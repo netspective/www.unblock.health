@@ -284,11 +284,9 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 
   $('#contact-submit').click(function (e) {
     e.preventDefault();
-    var verifyCallback3 ="";
-   window.verifyCallback0 = function(token) {
-    var recaptcha_response='';
-    var recaptcha_response = token;
-    console.log(recaptcha_response);
+    $('#contact-submit').prop('disabled', 'disabled');
+    $('#contact-submit').addClass('is-disabled');
+    //console.log(recaptcha_response);
         var uid = uuidv4();
         var first_name = $('#quickname').val();
         var email = $('#quickemail').val();
@@ -321,7 +319,12 @@ $('#contact-submit-live').prop('disabled', 'disabled');
         }
 
         var description = 'Subject: ' + subject + '<br />' + 'Message: ' + message;
+        var verifyCallback3 ="";
+        window.verifyCallback0 = function(token) {
+        var recaptcha_response='';
+        var recaptcha_response = token;
         if (recaptcha_response) {
+         
           $('#errorfooter').hide();
           // Push the form data to the dataLayer
           window.dataLayer = window.dataLayer || [];
@@ -334,7 +337,7 @@ $('#contact-submit-live').prop('disabled', 'disabled');
               'contactMessage': message
             }
           });
-          console.log(window.dataLayer);
+          //console.log(window.dataLayer);
         var form = new FormData();
         form.append("grant_type", "client_credentials");
         form.append("client_id", "220df659-3f88-9184-7aae-64d0ca060409");
@@ -398,10 +401,24 @@ $('#contact-submit-live').prop('disabled', 'disabled');
 });
 
 
-  $('#contact-submit').prop('disabled', 'disabled');
+  /*$('#contact-submit').prop('disabled', 'disabled');
+  $('#contact-submit').addClass('is-disabled');
+  $('#contactform').on('blur keyup change', 'textarea,input,select', function (event) {
+    quickContactValidation = validateForm('#quickcontact', '#contact-submit-live');
+    if((quickContactValidation==true)&&($("#name").val().length > 0)&&($("#email").val().length > 0)&&($("#patientoption").val()=="PA" ||$("#patientoption").val()=="HIM")){ 
+       $('#contact-submit-live').prop('disabled', false);
+       $('#contact-submit-live').removeClass('is-disabled');
+    }
+ });*/
+ $('#contact-submit').prop('disabled', 'disabled');
   $('#contact-submit').addClass('is-disabled');
   $('#contactform').on('blur keyup change', 'textarea,input', function (event) {
-    validateForm('#contactform', '#contact-submit');
+    quickContactValidation1 = validateForm('#contactform', '#contact-submit');
+    if((quickContactValidation1==true)&&($("#quickname").val().length > 0)&&($("#quickemail").val().length > 0)&&($("#quicksubject").val().length > 0)&&($("#quickmessage").val().length > 0)){ 
+      $('#contact-submit').prop('disabled', false);
+      $('#contact-submit').removeClass('is-disabled');
+   }
+    
   });
 // patient impact story form
 
