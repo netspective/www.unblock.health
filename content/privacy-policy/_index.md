@@ -2,7 +2,7 @@
 title: "Privacy Policy"
 slug: "privacy-policy"
 ---
-<p>Last updated: February 13, 2020</p>
+<p>Last updated: August 25, 2025</p>
 
 <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
 
