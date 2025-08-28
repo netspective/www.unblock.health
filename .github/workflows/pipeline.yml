@@ -1,11 +1,6 @@
 name: CI/CD Workflow
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
-  schedule:
-    - cron: '30 4 * * *'
 
 jobs:
   build-and-deploy:
