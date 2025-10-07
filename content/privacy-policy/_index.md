@@ -253,5 +253,4 @@ slug: "privacy-policy"
 <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
 
 <h2>Contact Us</h2>
-<h2>Contact Us</h2>
 <p>If you have any questions about this Policy or our services, you can email us at <a href="mailto:support@unblock.health">support@unblock.health</a> , call us at <a href="tel:+15514047202">+1 (551) 404-7202</a>, or submit your queries through the Contact Us on our website: <a href="https://www.unblock.health/">https://www.unblock.health/</a></p>
