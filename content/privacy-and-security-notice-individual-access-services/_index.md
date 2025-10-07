@@ -19,9 +19,9 @@ IAS is a means for obtaining protected health care information from a nationwide
 
 Under TEFCA principles, we do not assume consent is given on the basis of registration by an IAS user alone, and we send this notice to provide information that potential IAS users may want to consider in choosing whether to consent and use IAS or refuse to consent and not use IAS.We intend this notice to be a transparent mention of the factors a potential IAS may consider important. We welcome questions and requests from potential IAS users.   
 
-To obtain clarification or request more information, address our Privacy Department at **privacy@unblock.health**. 
+To obtain clarification or request additional information, address our Privacy Department at **support@unblock.health** or call us at **+1 (551) 404-7202**. 
 
-Individuals who are IAS users or potential IAS users should address complaints regarding the privacy policies described in this notice by email addressed to our Privacy Department at **privacy@unblock.health**.
+Individuals who are IAS users or potential IAS users should address any complaints regarding the privacy policies described in this notice by email addressed to our Privacy Department at **support@unblock.health** or call us at **+1 (551) 404-7202**.
 
 Our user-facing IAS application will identify a department or an Individual to contact who can respond to questions or complaints.
 

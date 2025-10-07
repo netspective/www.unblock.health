@@ -7,7 +7,14 @@ slug: "privacy-policy"
 <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
 
 <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
-
+<h2>Separate Terms of Use</h2>
+<p>For our Patient Access/IAS (Individual Access Services) features, additional privacy terms apply. Please see our IAS Privacy Notice.</p>
+<div class="slds-text-align_left">
+<a href="/privacy-and-security-notice-individual-access-services/" class="slds-show_inline-block" style="text-decoration: none;">
+<button id="free-account" class="slds-button border-btn-style" style="padding-left:30px; padding-right:30px;margin-top:10px; margin-bottom:35px;">
+            <span class="slds-text-heading_medium"><b>IAS (Patient Access) Privacy Notice</b></span>
+</button></a>
+</div>
 <h2>Interpretation and Definitions</h2>
 <h3>Interpretation</h3>
 <p>The words of which the initial letter is capitalized have meanings defined under the following conditions.</p>
@@ -246,7 +253,5 @@ slug: "privacy-policy"
 <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
 
 <h2>Contact Us</h2>
-<p>If you have any questions about this Privacy Policy, You can contact us:</p>
-<ul>
-         <li>By visiting this page on our website: <a href="https://www.unblock.health/">https://www.unblock.health/</a></li>
-     </ul>
+<h2>Contact Us</h2>
+<p>If you have any questions about this Policy or our services, you can email us at <a href="mailto:support@unblock.health">support@unblock.health</a> , call us at <a href="tel:+15514047202">+1 (551) 404-7202</a>, or submit your queries through the Contact Us on our website: <a href="https://www.unblock.health/">https://www.unblock.health/</a></p>
