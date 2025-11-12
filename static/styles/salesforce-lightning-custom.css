@@ -241,19 +241,48 @@ main {min-height: calc(55vh);}
     display: inline-block;
 }
 
+
+
 /* patient stories slider > starts */
     .uh-carousel{border:none;}
 
     @media screen and (min-width:1200px) {
     .uh-carousel{height: 650px !important;}
     }
-    @media screen and (max-width: 1199px) {
-    .uh-carousel{height: 560px !important;}
+    @media screen and (max-width: 1200px) {
+        .uh-carousel{height: 560px !important;}
+
     }
     @media screen and (max-width:991px) {
     .uh-carousel{height: 420px !important;}
     }
     @media screen and (max-width:767px) {
-    .uh-carousel{height: 310px !important;}
+        .uh-carousel{height: 310px !important;}
+        .slds-medium-text-align_center {
+        text-align:center!important;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 25px;
+        }
+
+        .slds-medium-m-bottom_medium {
+            margin-bottom: 40px!important;
+        }
     }
+
+    @media (min-width: 768px) {
+  .slds-grid {
+    flex-direction: row; /* Row layout on larger screens */
+    align-items: flex-start;
+  }
+
+  .slds-col img {
+    margin-right: 1.5rem;
+  }
+}
+
+
+
+
+
 /* patient stories slider < ends */
