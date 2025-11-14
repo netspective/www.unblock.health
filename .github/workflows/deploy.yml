@@ -1,4 +1,4 @@
-name: CI/CD Workflow
+name: Deploy
 
 on:
   workflow_dispatch:   # ✅ Only manual trigger now
